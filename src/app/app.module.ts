@@ -23,12 +23,17 @@ import {
 import {
   faStar as fasStar,
   faCog,
-  faDog,
   faSortAmountUp,
   faSortAmountDown,
   faSortAlphaUp,
   faSortAlphaDown,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faInstagramSquare,
+  faReddit,
+  faTwitter,
+  faDiscord,
+} from '@fortawesome/free-brands-svg-icons'
 import { MomentModule } from 'ngx-moment'
 
 import { HeaderItemComponent } from './components/header-item/header-item.component'
@@ -96,7 +101,15 @@ import { ColorHistoryModalComponent } from './components/color-history-modal/col
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(fasStar, faCog, faDog, faWindowRestore)
+    library.addIcons(
+      fasStar,
+      faCog,
+      faWindowRestore,
+      faInstagramSquare,
+      faReddit,
+      faTwitter,
+      faDiscord
+    )
     library.addIcons(
       farStar,
       farMoon,
