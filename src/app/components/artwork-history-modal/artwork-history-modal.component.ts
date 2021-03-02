@@ -99,10 +99,10 @@ export interface HistoryItem {
 
 @Component({
   selector: 'app-auction-modal',
-  templateUrl: './color-history-modal.component.html',
-  styleUrls: ['./color-history-modal.component.scss'],
+  templateUrl: './artwork-history-modal.component.html',
+  styleUrls: ['./artwork-history-modal.component.scss'],
 })
-export class ColorHistoryModalComponent implements OnInit {
+export class ArtworkHistoryModalComponent implements OnInit {
   color: Color | undefined
 
   history: HistoryItem[] | undefined

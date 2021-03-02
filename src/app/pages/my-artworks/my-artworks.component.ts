@@ -3,11 +3,11 @@ import { Observable } from 'rxjs'
 import { StoreService, Color } from 'src/app/services/store/store.service'
 
 @Component({
-  selector: 'app-my-colors',
-  templateUrl: './my-colors.component.html',
-  styleUrls: ['./my-colors.component.scss'],
+  selector: 'app-my-artworks',
+  templateUrl: './my-artworks.component.html',
+  styleUrls: ['./my-artworks.component.scss'],
 })
-export class MyColorsComponent implements OnInit {
+export class MyArtworksComponent implements OnInit {
   public colors$: Observable<Color[]> = new Observable()
   public colorsCount$: Observable<number> = new Observable()
 

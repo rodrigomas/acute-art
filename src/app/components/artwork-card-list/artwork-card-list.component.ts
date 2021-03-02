@@ -11,11 +11,11 @@ import {
 } from 'src/app/services/store/store.service'
 
 @Component({
-  selector: 'app-color-card-list',
-  templateUrl: './color-card-list.component.html',
-  styleUrls: ['./color-card-list.component.scss'],
+  selector: 'artwork-color-card-list',
+  templateUrl: './artwork-card-list.component.html',
+  styleUrls: ['./artwork-card-list.component.scss'],
 })
-export class ColorCardListComponent implements OnInit {
+export class ArtworkCardListComponent implements OnInit {
   @Input()
   public colors$: Observable<Color[]> = new Observable()
 

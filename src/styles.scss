@@ -27,7 +27,7 @@ $theme-colors: (
   'standard': #018e42,
   'epic': #4a90e2,
   'legendary': #9013fe,
-  'light-dark': #f5f5f5,
+  'light-dark': #fafafa,
 );
 
 $border-radius: 8px;
@@ -94,7 +94,7 @@ $link-hover-decoration: none;
 }
 
 app-auction-modal {
-  app-color-card-item {
+  app-artwork-card-item {
     .h-100 {
       height: initial !important;
     }

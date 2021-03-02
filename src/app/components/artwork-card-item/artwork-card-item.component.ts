@@ -13,7 +13,7 @@ import {
   isOwner,
   StoreService,
 } from 'src/app/services/store/store.service'
-import { ColorHistoryModalComponent } from '../color-history-modal/color-history-modal.component'
+import { ArtworkHistoryModalComponent } from '../artwork-history-modal/artwork-history-modal.component'
 
 type ColorState =
   | 'loading'
@@ -25,11 +25,11 @@ type ColorState =
   | 'own'
 
 @Component({
-  selector: 'app-color-card-item',
-  templateUrl: './color-card-item.component.html',
-  styleUrls: ['./color-card-item.component.scss'],
+  selector: 'app-artwork-card-item',
+  templateUrl: './artwork-card-item.component.html',
+  styleUrls: ['./artwork-card-item.component.scss'],
 })
-export class ColorCardItemComponent implements OnInit {
+export class ArtworkCardItemComponent implements OnInit {
   @Input()
   color: Color | undefined
 
@@ -99,7 +99,7 @@ export class ColorCardItemComponent implements OnInit {
     if (!this.color) {
       return
     }
-    const modalRef = this.modalService.show(ColorHistoryModalComponent, {
+    const modalRef = this.modalService.show(ArtworkHistoryModalComponent, {
       initialState: {
         color: this.color,
       },
