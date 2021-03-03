@@ -27,15 +27,13 @@ $theme-colors: (
   'standard': #018e42,
   'epic': #4a90e2,
   'legendary': #9013fe,
+  'light-dark': #fafafa,
 );
 
 $border-radius: 8px;
 $card-border-color: rgba(0, 0, 0, 0.04);
-$box-shadow: 0 40px 60px 0 rgba(0, 0, 0, 0.08),
-  0 80px 160px 0 rgba(0, 0, 0, 0.04);
-$btn-box-shadow: 0 2px 4px 0 rgba(44, 39, 56, 0.08),
-  0 4px 8px 0 rgba(44, 39, 56, 0.08);
 $card-border-radius: 24px;
+$card-bg: map_get($theme-colors, 'light-dark');
 $navbar-nav-link-padding-x: 1rem;
 $nav-tabs-border-width: 0;
 $nav-tabs-link-active-color: map_get($theme-colors, 'primary');
@@ -61,15 +59,6 @@ $link-hover-decoration: none;
 
 .container {
   max-width: 1400px !important;
-}
-
-.card,
-.dropdown-menu {
-  box-shadow: $box-shadow;
-}
-.btn,
-.input-group {
-  box-shadow: $btn-box-shadow;
 }
 
 .input-group {
@@ -105,7 +94,7 @@ $link-hover-decoration: none;
 }
 
 app-auction-modal {
-  app-color-card-item {
+  app-artwork-card-item {
     .h-100 {
       height: initial !important;
     }

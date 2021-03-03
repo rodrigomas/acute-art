@@ -23,21 +23,26 @@ import {
 import {
   faStar as fasStar,
   faCog,
-  faDog,
   faSortAmountUp,
   faSortAmountDown,
   faSortAlphaUp,
   faSortAlphaDown,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faInstagramSquare,
+  faReddit,
+  faTwitter,
+  faDiscord,
+} from '@fortawesome/free-brands-svg-icons'
 import { MomentModule } from 'ngx-moment'
 
 import { HeaderItemComponent } from './components/header-item/header-item.component'
 import { LandingComponent } from './pages/landing/landing.component'
 import { FooterItemComponent } from './components/footer-item/footer-item.component'
-import { ColorCardItemComponent } from './components/color-card-item/color-card-item.component'
+import { ArtworkCardItemComponent } from './components/artwork-card-item/artwork-card-item.component'
 import { ExploreComponent } from './pages/explore/explore.component'
 import { AuctionsComponent } from './pages/auctions/auctions.component'
-import { MyColorsComponent } from './pages/my-colors/my-colors.component'
+import { MyArtworksComponent } from './pages/my-artworks/my-artworks.component'
 import { AuctionModalComponent } from './components/auction-modal/auction-modal.component'
 import { StoreModule } from '@ngrx/store'
 import { reducers, metaReducers } from './reducers'
@@ -50,9 +55,9 @@ import { FormsModule } from '@angular/forms'
 import { ShortenPipe } from './pipes/shorten.pipe'
 import { AmountConverterPipe } from './pipes/amount.pipe'
 import { CountdownComponent } from './components/countdown/countdown.component'
-import { ColorCardListComponent } from './components/color-card-list/color-card-list.component'
+import { ArtworkCardListComponent } from './components/artwork-card-list/artwork-card-list.component'
 import { WatchlistComponent } from './pages/watchlist/watchlist.component'
-import { ColorHistoryModalComponent } from './components/color-history-modal/color-history-modal.component'
+import { ArtworkHistoryModalComponent } from './components/artwork-history-modal/artwork-history-modal.component'
 
 @NgModule({
   declarations: [
@@ -60,16 +65,16 @@ import { ColorHistoryModalComponent } from './components/color-history-modal/col
     HeaderItemComponent,
     LandingComponent,
     FooterItemComponent,
-    ColorCardItemComponent,
+    ArtworkCardItemComponent,
     ExploreComponent,
     AuctionsComponent,
-    MyColorsComponent,
+    MyArtworksComponent,
     AuctionModalComponent,
-    ColorHistoryModalComponent,
+    ArtworkHistoryModalComponent,
     ShortenPipe,
     AmountConverterPipe,
     CountdownComponent,
-    ColorCardListComponent,
+    ArtworkCardListComponent,
     WatchlistComponent,
   ],
   imports: [
@@ -96,7 +101,15 @@ import { ColorHistoryModalComponent } from './components/color-history-modal/col
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(fasStar, faCog, faDog, faWindowRestore)
+    library.addIcons(
+      fasStar,
+      faCog,
+      faWindowRestore,
+      faInstagramSquare,
+      faReddit,
+      faTwitter,
+      faDiscord
+    )
     library.addIcons(
       farStar,
       farMoon,
