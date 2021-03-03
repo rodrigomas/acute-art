@@ -24,6 +24,8 @@ $h1-font-size: 30px;
 /* custom colors */
 $theme-colors: (
   'primary': #2c7df7,
+  'success': #7ecb7b,
+  'danger': #f45f5f,
   'standard': #018e42,
   'epic': #4a90e2,
   'legendary': #9013fe,
@@ -65,9 +67,15 @@ $link-hover-decoration: none;
   border-radius: $border-radius;
 }
 
-.input-group-prepend .btn {
-  border-top-right-radius: $border-radius !important;
-  border-bottom-right-radius: $border-radius !important;
+.card {
+  .input-group-prepend .btn {
+    border-top-right-radius: $border-radius !important;
+    border-bottom-right-radius: $border-radius !important;
+  }
+}
+
+.btn-success {
+  color: #fff !important;
 }
 
 .panel {

@@ -363,9 +363,15 @@
     -->
       <div class="mt-auto">
         <div class="p-4">
-          <button type="button" class="btn btn-block btn-success">
-            <h5 class="m-0">4600 tez</h5>
-            <small>Buy</small>
+          <button
+            type="button"
+            class="btn btn-block btn-success"
+            (click)="bid()"
+          >
+            <div class="d-flex flex-column pt-1">
+              <h5 class="m-0">4600 tez</h5>
+              <small>Buy</small>
+            </div>
           </button>
         </div>
       </div>

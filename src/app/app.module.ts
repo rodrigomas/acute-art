@@ -16,8 +16,6 @@ import {
 } from '@fortawesome/angular-fontawesome'
 import {
   faStar as farStar,
-  faMoon as farMoon,
-  faSun as farSun,
   faWindowRestore,
 } from '@fortawesome/free-regular-svg-icons'
 import {
@@ -112,8 +110,6 @@ export class AppModule {
     )
     library.addIcons(
       farStar,
-      farMoon,
-      farSun,
       faSortAmountUp,
       faSortAmountDown,
       faSortAlphaUp,
