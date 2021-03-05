@@ -28,9 +28,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faInstagramSquare,
-  faReddit,
-  faTwitter,
-  faDiscord,
+  faYoutubeSquare,
+  faTwitterSquare,
+  faFacebookSquare,
+  faRedditSquare,
 } from '@fortawesome/free-brands-svg-icons'
 import { MomentModule } from 'ngx-moment'
 
@@ -104,9 +105,9 @@ export class AppModule {
       faCog,
       faWindowRestore,
       faInstagramSquare,
-      faReddit,
-      faTwitter,
-      faDiscord
+      faFacebookSquare,
+      faTwitterSquare,
+      faYoutubeSquare
     )
     library.addIcons(
       farStar,
