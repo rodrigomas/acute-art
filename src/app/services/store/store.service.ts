@@ -20,7 +20,7 @@ import {
 import { AccountInfo } from '@airgap/beacon-sdk'
 var deepEqual = require('fast-deep-equal/es6')
 
-const colorsFromStorage: Color[] = require('../../../assets/colors.json')
+const colorsFromStorage: Color[] = require('../../../assets/artworks.json')
 
 export interface Color {
   name: string
@@ -28,6 +28,7 @@ export interface Color {
   symbol: string
   token_id: number
   category: string
+  thumbnailUri: string
   auction: AuctionItem | undefined
   owner: string | undefined
   loading: boolean
@@ -93,7 +94,7 @@ export interface PreviousAuctionItem {
 
 export type ViewTypes = 'explore' | 'auctions' | 'my-colors' | 'watchlist'
 
-export type ColorCategory = 'all' | 'legendary' | 'epic' | 'standard'
+export type ColorCategory = 'all' | 'film' | 'grab'
 
 export type SortTypes = 'name' | 'price' | 'activity' | 'time'
 export type SortDirection = 'asc' | 'desc'

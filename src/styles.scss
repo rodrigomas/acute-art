@@ -24,11 +24,8 @@ $h1-font-size: 30px;
 /* custom colors */
 $theme-colors: (
   'primary': #2c7df7,
-  'success': #7ecb7b,
+  'success': #61dd56,
   'danger': #f45f5f,
-  'standard': #018e42,
-  'epic': #4a90e2,
-  'legendary': #9013fe,
   'light-dark': #fafafa,
 );
 
@@ -107,6 +104,12 @@ app-auction-modal {
       height: initial !important;
     }
   }
+}
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn {
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
 }
 
 @import '../node_modules/bootstrap/scss/bootstrap';

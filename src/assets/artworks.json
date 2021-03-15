@@ -1,0 +1,59 @@
+[
+  {
+    "token_id": 0,
+    "name": "Bjarne Melgaard",
+    "description": "My Trip",
+    "symbol": "OO",
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "shouldPreferSymbol": true,
+    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-9.png",
+    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "category": "grab"
+  },
+
+  {
+    "token_id": 1,
+    "name": "Bjarne Melgaard",
+    "description": "My Trip",
+    "symbol": "OO",
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "shouldPreferSymbol": true,
+    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "category": "grab"
+  },
+  {
+    "token_id": 2,
+    "name": "Bjarne Melgaard",
+    "description": "My Trip",
+    "symbol": "OO",
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "shouldPreferSymbol": true,
+    "thumbnailUri": "/assets/Screenshot2021-03-04.png",
+    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "category": "grab"
+  },
+  {
+    "token_id": 3,
+    "name": "Bjarne Melgaard",
+    "description": "My Trip",
+    "symbol": "OO",
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "shouldPreferSymbol": true,
+    "thumbnailUri": "/assets/placeholder.png",
+    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "category": "film"
+  }
+]

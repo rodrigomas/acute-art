@@ -7,7 +7,6 @@
         {{ title }} -
         <strong>{{ count$ | async }}</strong>
       </h3>
-      <!--
       <div *ngIf="category$ | async as category">
         <button
           (click)="setCategory(category, 'all')"
@@ -18,31 +17,22 @@
           All
         </button>
         <button
-          (click)="setCategory(category, 'standard')"
+          (click)="setCategory(category, 'film')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'standard' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="category === 'film' ? 'btn-dark' : 'btn-light'"
         >
-          Standard
+          Film
         </button>
         <button
-          (click)="setCategory(category, 'epic')"
+          (click)="setCategory(category, 'grab')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'epic' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="category === 'grab' ? 'btn-dark' : 'btn-light'"
         >
-          Epic
-        </button>
-        <button
-          (click)="setCategory(category, 'legendary')"
-          type="button"
-          class="btn btn-sm mr-3"
-          [ngClass]="category === 'legendary' ? 'btn-dark' : 'btn-light'"
-        >
-          Legendary
+          Grab
         </button>
       </div>
-      -->
     </div>
     <!--
     <div class="col-12 col-md-4 offset-0 offset-md-2">

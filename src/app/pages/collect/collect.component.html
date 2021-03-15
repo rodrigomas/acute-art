@@ -1,17 +1,9 @@
-<div class="pt-md-5 mt-5">
-  <img src="./assets/placeholder_large.png" style="width: 100%" />
-</div>
-<div class="py-5">
-  <h1 class="text-center">
+<div class="pt-5">
+  <h1 class="text-center pb-3">
     Bjarne Melgaard<br />
     My Trip
   </h1>
-  <p class="text-center py-3">
-    <span class="text-muted mr-1">Media</span> <strong>Film</strong>
-    <span class="text-muted mr-1">• Duration</span> <strong>14 min</strong
-    ><span class="text-muted mr-1"> • Resolution</span> <strong>4K</strong
-    ><span class="text-muted mr-1"> • Year</span> <strong>2019</strong>
-  </p>
+
   <div class="row justify-content-center pb-3">
     <div class="col-md-6">
       <p>
@@ -38,7 +30,7 @@
   </div>
   <div>
     <hr />
-    <div class="row justify-content-center py-3">
+    <div class="row justify-content-center pt-3">
       <div class="col-md-6">
         <button type="button" class="btn btn-light px-5 mr-3">
           <div class="d-flex flex-column pt-1">
@@ -64,8 +56,8 @@
   </div>
 </div>
 
-<div class="row pb-5 mb-5">
-  <div *ngFor="let color of colors$ | async" class="col-12 col-md-3 py-3">
-    <app-artwork-card-item [color]="color"></app-artwork-card-item>
-  </div>
-</div>
+<artwork-color-card-list
+  [title]="'Collect'"
+  [count$]="colorsCount$"
+  [colors$]="colors$"
+></artwork-color-card-list>

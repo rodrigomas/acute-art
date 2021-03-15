@@ -47,8 +47,6 @@ export class ArtworkCardItemComponent implements OnInit {
   bidAmount: string | undefined
   minBidAmount: string | undefined
 
-  categoryName: 'legendary' | 'epic' | 'Standard' = 'Standard'
-
   isOver: boolean = false
 
   state: ColorState = 'loading'
@@ -60,13 +58,6 @@ export class ArtworkCardItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.color?.category === 'E') {
-      this.categoryName = 'legendary'
-    }
-    if (this.color?.category === 'R') {
-      this.categoryName = 'epic'
-    }
-
     if (this.color && this.color.auction) {
       this.bidAmount = new BigNumber(this.color.auction.bidAmount)
         .plus(100_000)
@@ -91,7 +82,7 @@ export class ArtworkCardItemComponent implements OnInit {
       initialState: {
         color: this.color,
       },
-      class: 'modal-lg modal-dialog-centered',
+      class: 'modal-xl modal-dialog-centered',
     })
   }
 
@@ -103,7 +94,7 @@ export class ArtworkCardItemComponent implements OnInit {
       initialState: {
         color: this.color,
       },
-      class: 'modal-lg modal-dialog-centered',
+      class: 'modal-xl modal-dialog-centered',
     })
   }
 

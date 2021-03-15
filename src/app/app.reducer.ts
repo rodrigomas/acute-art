@@ -4,7 +4,7 @@ import { Action, createReducer, on } from '@ngrx/store'
 import * as actions from './connect-wallet.actions'
 import { Color } from './services/store/store.service'
 
-const colors = require('../assets/colors.json')
+const colors = require('../assets/artworks.json')
 
 export const appFeatureKey = 'app'
 

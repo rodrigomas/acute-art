@@ -25,21 +25,20 @@ import {
   faSortAmountDown,
   faSortAlphaUp,
   faSortAlphaDown,
+  faPlay,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faInstagramSquare,
   faYoutubeSquare,
   faTwitterSquare,
   faFacebookSquare,
-  faRedditSquare,
 } from '@fortawesome/free-brands-svg-icons'
 import { MomentModule } from 'ngx-moment'
 
 import { HeaderItemComponent } from './components/header-item/header-item.component'
-import { LandingComponent } from './pages/landing/landing.component'
 import { FooterItemComponent } from './components/footer-item/footer-item.component'
 import { ArtworkCardItemComponent } from './components/artwork-card-item/artwork-card-item.component'
-import { ExploreComponent } from './pages/explore/explore.component'
+import { CollectComponent } from './pages/collect/collect.component'
 import { AuctionsComponent } from './pages/auctions/auctions.component'
 import { MyArtworksComponent } from './pages/my-artworks/my-artworks.component'
 import { AuctionModalComponent } from './components/auction-modal/auction-modal.component'
@@ -62,10 +61,9 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
   declarations: [
     AppComponent,
     HeaderItemComponent,
-    LandingComponent,
     FooterItemComponent,
     ArtworkCardItemComponent,
-    ExploreComponent,
+    CollectComponent,
     AuctionsComponent,
     MyArtworksComponent,
     AuctionModalComponent,
@@ -107,7 +105,8 @@ export class AppModule {
       faInstagramSquare,
       faFacebookSquare,
       faTwitterSquare,
-      faYoutubeSquare
+      faYoutubeSquare,
+      faPlay
     )
     library.addIcons(
       farStar,
