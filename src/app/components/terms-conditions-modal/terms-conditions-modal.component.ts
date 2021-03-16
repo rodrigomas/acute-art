@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
+import { CacheKeys, CacheService } from 'src/app/services/cache.service'
 
 @Component({
   selector: 'app-terms-conditions-modal',
@@ -18,7 +19,8 @@ export class TermsConditionsModalComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    public modalService: BsModalService
+    public modalService: BsModalService,
+    private readonly cacheService: CacheService
   ) {
     this.checkedControl = new FormControl(null, Validators.required)
   }
@@ -28,10 +30,8 @@ export class TermsConditionsModalComponent implements OnInit {
   submit() {
     console.log('submitting')
     console.log(this.checkedControl.value)
-  }
-
-  onChange(isChecked: any) {
-    console.log('ischecked: ', isChecked.target.checked)
-    console.log('formcontrol value: ', this.checkedControl.value)
+    this.cacheService
+      .set(CacheKeys.termsAgreed, this.checkedControl.value)
+      .subscribe(() => {})
   }
 }

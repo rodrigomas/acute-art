@@ -1,11 +1,14 @@
 import { state } from '@angular/animations'
 import { Component, OnInit, Input } from '@angular/core'
+import { StorageMap } from '@ngx-pwa/local-storage'
 import BigNumber from 'bignumber.js'
 
 import { BsModalService } from 'ngx-bootstrap/modal'
+import { Observable } from 'rxjs'
 import { first } from 'rxjs/operators'
 import { AuctionModalComponent } from 'src/app/components/auction-modal/auction-modal.component'
 import { BeaconService } from 'src/app/services/beacon/beacon.service'
+import { CacheKeys, CacheService } from 'src/app/services/cache.service'
 import {
   Color,
   isActiveAuction,
@@ -14,6 +17,7 @@ import {
   StoreService,
 } from 'src/app/services/store/store.service'
 import { ArtworkHistoryModalComponent } from '../artwork-history-modal/artwork-history-modal.component'
+import { TermsConditionsModalComponent } from '../terms-conditions-modal/terms-conditions-modal.component'
 
 type ColorState =
   | 'loading'
@@ -51,11 +55,16 @@ export class ArtworkCardItemComponent implements OnInit {
 
   state: ColorState = 'loading'
 
+  showTermsModal$: Observable<boolean>
+
   constructor(
     private readonly modalService: BsModalService,
     private readonly beaconService: BeaconService,
-    private readonly storeService: StoreService
-  ) {}
+    private readonly storeService: StoreService,
+    private readonly cacheService: CacheService
+  ) {
+    this.showTermsModal$ = this.cacheService.get(CacheKeys.termsAgreed)
+  }
 
   ngOnInit(): void {
     if (this.color && this.color.auction) {
@@ -98,6 +107,12 @@ export class ArtworkCardItemComponent implements OnInit {
     })
   }
 
+  openTermsModal() {
+    const modalRef = this.modalService.show(TermsConditionsModalComponent, {
+      class: 'modal-xl modal-dialog-centered',
+    })
+  }
+
   toggleFavorite() {
     if (this.color) {
       this.storeService.setFavorite(this.color.token_id, !this.color.isFavorite)
@@ -105,6 +120,11 @@ export class ArtworkCardItemComponent implements OnInit {
   }
 
   async bid() {
+    this.showTermsModal$.subscribe((agreed) => {
+      if (!agreed) {
+        this.openTermsModal()
+      }
+    })
     if (
       this.color &&
       !this.color.loading &&
