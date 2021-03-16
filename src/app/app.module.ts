@@ -56,6 +56,7 @@ import { CountdownComponent } from './components/countdown/countdown.component'
 import { ArtworkCardListComponent } from './components/artwork-card-list/artwork-card-list.component'
 import { WatchlistComponent } from './pages/watchlist/watchlist.component'
 import { ArtworkHistoryModalComponent } from './components/artwork-history-modal/artwork-history-modal.component'
+import { PlayerComponent } from './components/player/player.component'
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
     CountdownComponent,
     ArtworkCardListComponent,
     WatchlistComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,

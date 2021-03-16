@@ -107,6 +107,8 @@ export class ArtworkHistoryModalComponent implements OnInit {
 
   history: HistoryItem[] | undefined
 
+  public videoExampleUrl = 'https://vimeo.com/520974949/279f38821e' //TODO change to dynamic attribute
+
   constructor(
     public bsModalRef: BsModalRef,
     public modalService: BsModalService,
