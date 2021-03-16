@@ -13,19 +13,26 @@ import Player from '@vimeo/player'
   styleUrls: ['./player.component.scss'],
 })
 export class PlayerComponent implements AfterViewInit, OnInit {
-  @Input() videoUrl: string = 'https://vimeo.com/520974949/279f38821e'
+  public options = {}
+
+  @Input()
+  set videoUrl(value: string) {
+    if (value) {
+      this.options = {
+        url: value,
+        autoplay: true,
+        controls: false,
+        loop: true,
+        responsive: true,
+        title: true,
+      }
+    }
+  }
 
   @ViewChild('player_container') playerContainer: any
 
   public videoPlayer: Player | undefined
-  options = {
-    url: this.videoUrl,
-    autoplay: true,
-    controls: false,
-    loop: true,
-    responsive: true,
-    title: true,
-  }
+
   constructor() {}
 
   ngAfterViewInit(): void {
