@@ -49,13 +49,14 @@ import { AppEffects } from './app.effects'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { ConnectWalletEffects } from './connect-wallet.effects'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ShortenPipe } from './pipes/shorten.pipe'
 import { AmountConverterPipe } from './pipes/amount.pipe'
 import { CountdownComponent } from './components/countdown/countdown.component'
 import { ArtworkCardListComponent } from './components/artwork-card-list/artwork-card-list.component'
 import { WatchlistComponent } from './pages/watchlist/watchlist.component'
 import { ArtworkHistoryModalComponent } from './components/artwork-history-modal/artwork-history-modal.component'
+import { TermsConditionsModalComponent } from './components/terms-conditions-modal/terms-conditions-modal.component'
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
     CountdownComponent,
     ArtworkCardListComponent,
     WatchlistComponent,
+    TermsConditionsModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
     EffectsModule.forRoot([AppEffects, ConnectWalletEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent, BsModalService],
