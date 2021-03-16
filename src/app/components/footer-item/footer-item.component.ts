@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { ApiService } from 'src/app/services/api/api.service'
 
 @Component({
   selector: 'app-footer-item',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./footer-item.component.scss'],
 })
 export class FooterItemComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly apiService: ApiService) {}
 
   ngOnInit(): void {}
+
+  testMailChimp() {
+    this.apiService.testRequest()
+  }
 }
