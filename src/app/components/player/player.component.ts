@@ -21,7 +21,7 @@ export class PlayerComponent implements AfterViewInit, OnInit {
   options = {
     url: this.videoUrl,
     autoplay: true,
-    controls: false,
+    controls: true,
     loop: true,
     responsive: true,
     title: true,
