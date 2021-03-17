@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core'
-import { StorageMap } from '@ngx-pwa/local-storage'
-import { Observable } from 'rxjs'
 
 export enum CacheKeys {
   termsAgreed = 'termsAgreed',
@@ -10,17 +8,17 @@ export enum CacheKeys {
   providedIn: 'root',
 })
 export class CacheService {
-  constructor(private readonly storage: StorageMap) {}
+  constructor() {}
 
-  delete(key: CacheKeys): Observable<undefined> {
-    return this.storage.delete(key)
+  delete(key: CacheKeys) {
+    return localStorage.removeItem(key)
   }
 
-  set<T>(key: CacheKeys, value: T): Observable<undefined> {
-    return this.storage.set(key, value)
+  set<T>(key: CacheKeys, value: string) {
+    return localStorage.setItem(key, value)
   }
 
-  get<T>(key: CacheKeys): Observable<T> {
-    return <Observable<T>>this.storage.get(key)
+  get<T>(key: CacheKeys): string | null {
+    return localStorage.getItem(key)
   }
 }

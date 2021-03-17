@@ -1,10 +1,7 @@
-import { state } from '@angular/animations'
 import { Component, OnInit, Input } from '@angular/core'
-import { StorageMap } from '@ngx-pwa/local-storage'
 import BigNumber from 'bignumber.js'
 
 import { BsModalService } from 'ngx-bootstrap/modal'
-import { Observable } from 'rxjs'
 import { first } from 'rxjs/operators'
 import { AuctionModalComponent } from 'src/app/components/auction-modal/auction-modal.component'
 import { BeaconService } from 'src/app/services/beacon/beacon.service'
@@ -55,7 +52,7 @@ export class ArtworkCardItemComponent implements OnInit {
 
   state: ColorState = 'loading'
 
-  showTermsModal$: Observable<boolean>
+  showTermsModal: string | null
 
   constructor(
     private readonly modalService: BsModalService,
@@ -63,7 +60,7 @@ export class ArtworkCardItemComponent implements OnInit {
     private readonly storeService: StoreService,
     private readonly cacheService: CacheService
   ) {
-    this.showTermsModal$ = this.cacheService.get(CacheKeys.termsAgreed)
+    this.showTermsModal = this.cacheService.get(CacheKeys.termsAgreed)
   }
 
   ngOnInit(): void {
@@ -120,11 +117,8 @@ export class ArtworkCardItemComponent implements OnInit {
   }
 
   async bid() {
-    this.showTermsModal$.subscribe((agreed) => {
-      if (!agreed) {
-        this.openTermsModal()
-      }
-    })
+    this.showTermsModal !== 'true' ? this.openTermsModal() : null
+
     if (
       this.color &&
       !this.color.loading &&

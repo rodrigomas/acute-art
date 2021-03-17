@@ -28,10 +28,10 @@ export class TermsConditionsModalComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
-    console.log('submitting')
-    console.log(this.checkedControl.value)
-    this.cacheService
-      .set(CacheKeys.termsAgreed, this.checkedControl.value)
-      .subscribe(() => {})
+    console.log(this.checkedControl.value.toString())
+    this.cacheService.set(
+      CacheKeys.termsAgreed,
+      this.checkedControl.value.toString()
+    )
   }
 }
