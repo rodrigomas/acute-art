@@ -49,7 +49,7 @@ import { AppEffects } from './app.effects'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { ConnectWalletEffects } from './connect-wallet.effects'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ShortenPipe } from './pipes/shorten.pipe'
 import { AmountConverterPipe } from './pipes/amount.pipe'
 import { CountdownComponent } from './components/countdown/countdown.component'
@@ -92,6 +92,7 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
     EffectsModule.forRoot([AppEffects, ConnectWalletEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent, BsModalService],

@@ -1,7 +1,36 @@
 <div class="container-fluid bg-dark">
   <div class="container">
     <div class="row py-5">
-      <div class="col"></div>
+      <div class="col">
+        <p style="color: white">New drop coming! Be the first to know:</p>
+        <div class="input-group input-group__two-items">
+          <input
+            [formControl]="emailAddressControl"
+            type="text"
+            class="form-control"
+            placeholder="..."
+            aria-label="Email"
+            [ngClass]="{
+              'is-invalid':
+                emailAddressControl.errors &&
+                (emailAddressControl.touched || emailAddressControl.dirty)
+            }"
+          />
+          <span class="input-group-prepend">
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="addMember()"
+              [disabled]="emailAddressControl.invalid"
+            >
+              Sign Up
+            </button>
+          </span>
+          <div class="invalid-feedback px-3 py-2">
+            <strong>Invalid Address</strong>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -10,8 +39,11 @@
     <div class="col d-flex align-items-center">
       <a class="nav-link text-muted" href="#">How to use</a>
       <a class="nav-link text-muted" href="#">Terms and Conditions</a>
-      <button class="nav-link text-muted" (click)="testMailChimp()">
-        Test Mailchimp
+      <button class="nav-link text-muted" (click)="getMembers()">
+        get Members
+      </button>
+      <button class="nav-link text-muted" (click)="addMember()">
+        add member
       </button>
     </div>
     <div class="col d-flex justify-content-md-end">
