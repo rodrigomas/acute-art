@@ -109,7 +109,7 @@ export class ArtworkCardItemComponent implements OnInit {
 
   openTermsModal() {
     const modalRef = this.modalService.show(TermsConditionsModalComponent, {
-      class: 'modal-xl modal-dialog-centered',
+      class: 'modal-md modal-dialog-centered',
     })
   }
 
