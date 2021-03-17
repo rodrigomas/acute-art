@@ -246,7 +246,7 @@ export class ApiService {
       location: { latitude: 0, longitude: 0 },
       marketing_permissions: [],
       ip_signup: '',
-      timestamp_signup: `${new Date().getTime()}`,
+      timestamp_signup: '',
       ip_opt: '',
       timestamp_opt: '',
       tags: [],
