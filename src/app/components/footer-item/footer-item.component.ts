@@ -12,6 +12,8 @@ export class FooterItemComponent implements OnInit {
   ngOnInit(): void {}
 
   testMailChimp() {
-    this.apiService.testRequest()
+    this.apiService
+      .testRequest()
+      .subscribe((response) => console.log('mailchimp dummy: ', response))
   }
 }
