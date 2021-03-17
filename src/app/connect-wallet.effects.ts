@@ -11,13 +11,15 @@ import {
 } from 'rxjs/operators'
 
 import * as actions from './connect-wallet.actions'
+import { ApiService } from './services/api/api.service'
 import { BeaconService } from './services/beacon/beacon.service'
 
 @Injectable()
 export class ConnectWalletEffects {
   constructor(
     private actions$: Actions,
-    private readonly beaconService: BeaconService
+    private readonly beaconService: BeaconService,
+    private readonly apiService: ApiService
   ) {}
 
   setupBeacon$ = createEffect(() =>
@@ -65,6 +67,18 @@ export class ConnectWalletEffects {
           .reset()
           .then(() => actions.disconnectWalletSuccess())
           .catch((error) => actions.disconnectWalletFailure({ error }))
+      })
+    )
+  )
+
+  signUpMember$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.signUpMember),
+      switchMap(({ email }) => {
+        return this.apiService.addMember(email).pipe(
+          map(() => actions.signUpMemberSuccess()),
+          catchError((error) => of(actions.signUpMemberFailed(error)))
+        )
       })
     )
   )
