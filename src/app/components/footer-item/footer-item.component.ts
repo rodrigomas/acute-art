@@ -4,6 +4,8 @@ import { ApiService } from 'src/app/services/api/api.service'
 import * as fromRoot from '../../reducers/index'
 import * as actions from '../../connect-wallet.actions'
 import { Store } from '@ngrx/store'
+import { Subject } from 'rxjs'
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 
 const addressValidatorOrOpts = [Validators.required, Validators.email]
 
@@ -14,11 +16,25 @@ const addressValidatorOrOpts = [Validators.required, Validators.email]
 })
 export class FooterItemComponent implements OnInit {
   public emailAddressControl: FormControl
+  public validAddress: boolean | undefined
+
+  model: string = ''
+  modelChanged: Subject<string> = new Subject<string>()
+
   constructor(
     private readonly apiService: ApiService,
     private readonly store$: Store<fromRoot.State>
   ) {
-    this.emailAddressControl = new FormControl('', addressValidatorOrOpts)
+    this.emailAddressControl = new FormControl('')
+
+    this.modelChanged
+      .pipe(debounceTime(800), distinctUntilChanged())
+      .subscribe((model) => {
+        this.emailAddressControl = new FormControl(
+          model,
+          addressValidatorOrOpts
+        )
+      })
   }
 
   ngOnInit(): void {}
@@ -33,4 +49,9 @@ export class FooterItemComponent implements OnInit {
       actions.signUpMember({ email: this.emailAddressControl.value })
     )
   }
+  changed(text: string) {
+    console.log('changed: ', text)
+    this.modelChanged.next(text)
+  }
+  ngOnDestroy() {}
 }

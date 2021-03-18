@@ -12,10 +12,9 @@
             class="form-control"
             placeholder="hi@email.com"
             aria-label="Email"
+            (ngModelChange)="changed($event)"
             [ngClass]="{
-              'is-invalid':
-                emailAddressControl.errors &&
-                (emailAddressControl.touched || emailAddressControl.dirty)
+              'is-invalid': emailAddressControl.errors
             }"
           />
           <span class="input-group-prepend">
@@ -28,7 +27,10 @@
               Sign Up
             </button>
           </span>
-          <div class="invalid-feedback px-3 py-2">
+          <div
+            class="invalid-feedback px-3 py-2"
+            *ngIf="emailAddressControl.invalid"
+          >
             <strong>Please use a valid email address</strong>
           </div>
         </div>
