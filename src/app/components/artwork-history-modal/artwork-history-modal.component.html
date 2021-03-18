@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <!-- TODO: Whitelabeld Vimeo Player if category film -->
-          <ng-container *ngIf="color.category === 'film'; else background">
+          <ng-container *ngIf="color.type === 'film'; else background">
             <h5>Trailer</h5>
             <div class="card--artwork__header">
               <app-player [videoUrl]="videoExampleUrl"></app-player>

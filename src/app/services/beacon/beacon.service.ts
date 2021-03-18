@@ -30,7 +30,7 @@ export async function getRandomNumber(num: number): Promise<string> {
 })
 export class BeaconService {
   public wallet: BeaconWallet
-  public network: Network = { type: NetworkType.MAINNET }
+  public network: Network = { type: NetworkType.EDONET }
 
   constructor(private readonly storeService: StoreService) {
     this.wallet = new BeaconWallet({ name: environment.appName })
@@ -99,7 +99,7 @@ export class BeaconService {
     this.storeService.setFavorite(tokenId, true)
 
     const contractInstance = await tezos.wallet.at(
-      environment.tzColorsAuctionContract
+      environment.acuteartAuctionContract
     )
     console.log(contractInstance)
     const result = await contractInstance.methods
@@ -123,7 +123,7 @@ export class BeaconService {
     this.storeService.setFavorite(tokenId, true)
 
     const contractInstance = await tezos.wallet.at(
-      environment.tzColorsAuctionContract
+      environment.acuteartAuctionContract
     )
     console.log(contractInstance)
     const result = await contractInstance.methods.withdraw(auctionId).send()
@@ -135,9 +135,9 @@ export class BeaconService {
     this.storeService.setColorLoadingState(tokenId, true)
     this.storeService.setFavorite(tokenId, true)
 
-    const assetContract = await tezos.wallet.at(environment.tzColorsContract)
+    const assetContract = await tezos.wallet.at(environment.acuteartContract)
     const auctionContract = await tezos.wallet.at(
-      environment.tzColorsAuctionContract
+      environment.acuteartAuctionContract
     )
 
     const randomNumber = await getRandomNumber(10)
@@ -197,14 +197,14 @@ export class BeaconService {
       new Date().getTime() + durationInSeconds.toNumber()
     )
 
-    const contractInstance = await tezos.wallet.at(environment.tzColorsContract)
+    const contractInstance = await tezos.wallet.at(environment.acuteartContract)
 
     const updateOperatorsResult = await contractInstance.methods
       .update_operators([
         {
           add_operator: {
             owner,
-            operator: environment.tzColorsAuctionContract,
+            operator: environment.acuteartAuctionContract,
             token_id: tokenId,
           },
         },
@@ -212,7 +212,7 @@ export class BeaconService {
       .toTransferParams()
 
     const auctionContract = await tezos.wallet.at(
-      environment.tzColorsAuctionContract
+      environment.acuteartAuctionContract
     )
 
     const randomNumber = await getRandomNumber(10)
@@ -222,7 +222,7 @@ export class BeaconService {
         randomNumber, // auction_id
         amount.toString(), // bid_amount
         endDate,
-        environment.tzColorsContract, // token_address
+        environment.acuteartContract, // token_address
         1, // token_amount (always 1)
         tokenId // token_id
       )
@@ -255,7 +255,7 @@ export class BeaconService {
   private async getBalances(_userAddress: string) {
     try {
       const contractInstance = await tezos.wallet.at(
-        environment.tzColorsContract
+        environment.acuteartContract
       )
       const storage: Storage = await contractInstance.storage()
 

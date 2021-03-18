@@ -1,59 +1,212 @@
 [
   {
     "token_id": 0,
-    "name": "Bjarne Melgaard",
-    "description": "My Trip",
-    "symbol": "OO",
     "decimals": 0,
     "isBooleanAmount": true,
-    "shouldPreferSymbol": true,
-    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-9.png",
+    "name": "Edition 1 of 10",
+    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
+    "creators": ["Bjarne Melgaard"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "film",
+    "tags": ["CryptoTaco", "taco", "collectibles"],
+    "language": "en",
     "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "category": "grab"
+    "formats": [
+      {
+        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+        "mimeType": "video/mp4",
+        "fileSize": 7134739,
+        "fileName": "Track-1.mp3",
+        "duration": "00:56:46",
+        "dataRate": {
+          "value": 320,
+          "unit": "kbps"
+        }
+      }
+    ],
+    "attributes": [
+      {
+        "name": "filling",
+        "value": "carne asada"
+      },
+      {
+        "name": "shell",
+        "value": "double corn tortilla"
+      },
+      {
+        "name": "salsa",
+        "value": "mango"
+      },
+      {
+        "name": "garnish",
+        "value": "pickled red onion"
+      },
+      {
+        "name": "secret sauce",
+        "value": "ghost pepper"
+      },
+      {
+        "name": "rarity",
+        "value": "epic"
+      }
+    ]
   },
-
   {
     "token_id": 1,
-    "name": "Bjarne Melgaard",
-    "description": "My Trip",
-    "symbol": "OO",
     "decimals": 0,
     "isBooleanAmount": true,
-    "shouldPreferSymbol": true,
-    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "name": "Edition 2 of 10",
+    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
+    "creators": ["Bjarne Melgaard"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "film",
+    "tags": ["CryptoTaco", "taco", "collectibles"],
+    "language": "en",
     "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "category": "grab"
+    "formats": [
+      {
+        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+        "mimeType": "video/mp4",
+        "fileSize": 7134739,
+        "fileName": "Track-1.mp3",
+        "duration": "00:56:46",
+        "dataRate": {
+          "value": 320,
+          "unit": "kbps"
+        }
+      }
+    ],
+    "attributes": [
+      {
+        "name": "filling",
+        "value": "carne asada"
+      },
+      {
+        "name": "shell",
+        "value": "double corn tortilla"
+      },
+      {
+        "name": "salsa",
+        "value": "mango"
+      },
+      {
+        "name": "garnish",
+        "value": "pickled red onion"
+      },
+      {
+        "name": "secret sauce",
+        "value": "ghost pepper"
+      },
+      {
+        "name": "rarity",
+        "value": "epic"
+      }
+    ]
   },
   {
     "token_id": 2,
-    "name": "Bjarne Melgaard",
-    "description": "My Trip",
-    "symbol": "OO",
     "decimals": 0,
     "isBooleanAmount": true,
-    "shouldPreferSymbol": true,
-    "thumbnailUri": "/assets/Screenshot2021-03-04.png",
+    "name": "Edition 1 of 10",
+    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
+    "creators": ["Bjarne Melgaard"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "grab",
+    "tags": ["CryptoTaco", "taco", "collectibles"],
+    "language": "en",
     "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "category": "grab"
+    "formats": [
+      {
+        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+        "mimeType": "image/jpg",
+        "fileSize": 7134739,
+        "fileName": "image.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "name": "filling",
+        "value": "carne asada"
+      },
+      {
+        "name": "shell",
+        "value": "double corn tortilla"
+      },
+      {
+        "name": "salsa",
+        "value": "mango"
+      },
+      {
+        "name": "garnish",
+        "value": "pickled red onion"
+      },
+      {
+        "name": "secret sauce",
+        "value": "ghost pepper"
+      },
+      {
+        "name": "rarity",
+        "value": "epic"
+      }
+    ]
   },
   {
     "token_id": 3,
-    "name": "Bjarne Melgaard",
-    "description": "My Trip",
-    "symbol": "OO",
     "decimals": 0,
     "isBooleanAmount": true,
-    "shouldPreferSymbol": true,
-    "thumbnailUri": "/assets/placeholder.png",
+    "name": "Edition 2 of 10",
+    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
+    "creators": ["Bjarne Melgaard"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "grab",
+    "tags": ["CryptoTaco", "taco", "collectibles"],
+    "language": "en",
     "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
     "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "category": "film"
+    "formats": [
+      {
+        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+        "mimeType": "image/jpg",
+        "fileSize": 7134739,
+        "fileName": "image.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "name": "filling",
+        "value": "carne asada"
+      },
+      {
+        "name": "shell",
+        "value": "double corn tortilla"
+      },
+      {
+        "name": "salsa",
+        "value": "mango"
+      },
+      {
+        "name": "garnish",
+        "value": "pickled red onion"
+      },
+      {
+        "name": "secret sauce",
+        "value": "ghost pepper"
+      },
+      {
+        "name": "rarity",
+        "value": "epic"
+      }
+    ]
   }
 ]
