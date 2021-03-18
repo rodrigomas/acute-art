@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
-import { Actions, createEffect, ofType } from '@ngrx/effects'
-import { of } from 'rxjs'
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects'
+import { BsModalService } from 'ngx-bootstrap/modal'
+import { from, of } from 'rxjs'
 import {
   map,
   catchError,
@@ -9,15 +10,19 @@ import {
   mergeMap,
   filter,
 } from 'rxjs/operators'
+import { TermsConditionsModalComponent } from './components/terms-conditions-modal/terms-conditions-modal.component'
 
 import * as actions from './connect-wallet.actions'
 import { BeaconService } from './services/beacon/beacon.service'
+import { CacheKeys, CacheService } from './services/cache.service'
 
 @Injectable()
 export class ConnectWalletEffects {
   constructor(
     private actions$: Actions,
-    private readonly beaconService: BeaconService
+    private readonly beaconService: BeaconService,
+    private readonly cacheService: CacheService,
+    private readonly modalService: BsModalService
   ) {}
 
   setupBeacon$ = createEffect(() =>
@@ -67,5 +72,46 @@ export class ConnectWalletEffects {
           .catch((error) => actions.disconnectWalletFailure({ error }))
       })
     )
+  )
+  checkingTermsAccepted$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.checkingTermsAccepted),
+      switchMap(({ operationType }) => {
+        return of(this.cacheService.get(CacheKeys.termsAgreed)).pipe(
+          map((response) => {
+            if (response) {
+              return actions.checkingTermsAcceptedSuccess({ operationType })
+            } else {
+              //TODO deploy action to show modal
+              return actions.showTermsModal({ operationType })
+            }
+          }),
+          catchError((error) =>
+            of(actions.checkingTermsAcceptedFailure({ error }))
+          )
+        )
+      })
+    )
+  )
+
+  @Effect({ dispatch: false }) showTermsModal$ = this.actions$.pipe(
+    ofType(actions.showTermsModal),
+    map(({ operationType }) => {
+      //TODO: show modal
+      let modalRef = this.modalService.show(TermsConditionsModalComponent, {
+        class: 'modal-md modal-dialog-centered',
+      })
+      modalRef
+        ? modalRef.content
+          ? (modalRef.content.opType = operationType)
+          : null
+        : null
+    })
+  )
+  @Effect({ dispatch: false }) submittingTerms$ = this.actions$.pipe(
+    ofType(actions.submittingTerms),
+    map(({ key, value }) => {
+      return this.cacheService.set(key, value)
+    })
   )
 }

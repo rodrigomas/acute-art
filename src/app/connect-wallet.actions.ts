@@ -1,5 +1,7 @@
 import { AccountInfo } from '@airgap/beacon-sdk'
 import { createAction, props } from '@ngrx/store'
+import { OperationType } from './components/artwork-card-item/artwork-card-item.component'
+import { CacheKeys } from './services/cache.service'
 
 const featureName = 'ConnectWallet'
 
@@ -31,4 +33,24 @@ export const disconnectWalletSuccess = createAction(
 export const disconnectWalletFailure = createAction(
   `[${featureName}] Disconnect Wallet Failure`,
   props<{ error: any }>()
+)
+export const checkingTermsAccepted = createAction(
+  `[${featureName}] Checking if Terms & Conditions Accepted`,
+  props<{ operationType: OperationType }>()
+)
+export const checkingTermsAcceptedSuccess = createAction(
+  `[${featureName}] Checking if Terms & Conditions Accepted Success`,
+  props<{ operationType: OperationType }>()
+)
+export const checkingTermsAcceptedFailure = createAction(
+  `[${featureName}] Checking if Terms & Conditions Accepted Failure`,
+  props<{ error: any }>()
+)
+export const showTermsModal = createAction(
+  `[${featureName}] Showing Terms & Conditions Modal`,
+  props<{ operationType: OperationType }>()
+)
+export const submittingTerms = createAction(
+  `[${featureName}] Submitting Terms & Conditions Modal`,
+  props<{ key: CacheKeys; value: string; operationType: OperationType }>()
 )

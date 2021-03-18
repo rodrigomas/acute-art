@@ -15,6 +15,9 @@ import {
 } from 'src/app/services/store/store.service'
 import { ArtworkHistoryModalComponent } from '../artwork-history-modal/artwork-history-modal.component'
 import { TermsConditionsModalComponent } from '../terms-conditions-modal/terms-conditions-modal.component'
+import { Store } from '@ngrx/store'
+import * as actions from '../../connect-wallet.actions'
+import { State } from 'src/app/app.reducer'
 
 type ColorState =
   | 'loading'
@@ -25,6 +28,11 @@ type ColorState =
   | 'owned'
   | 'own'
 
+export enum OperationType {
+  BID = 'bid',
+  INITIAL = 'initial',
+  UNDEFINED = 'undefined',
+}
 @Component({
   selector: 'app-artwork-card-item',
   templateUrl: './artwork-card-item.component.html',
@@ -58,9 +66,11 @@ export class ArtworkCardItemComponent implements OnInit {
     private readonly modalService: BsModalService,
     private readonly beaconService: BeaconService,
     private readonly storeService: StoreService,
-    private readonly cacheService: CacheService
+    private readonly cacheService: CacheService,
+    private readonly store$: Store<State>
   ) {
     this.showTermsModal = this.cacheService.get(CacheKeys.termsAgreed)
+    this.cacheService.delete(CacheKeys.termsAgreed)
   }
 
   ngOnInit(): void {
@@ -117,24 +127,27 @@ export class ArtworkCardItemComponent implements OnInit {
   }
 
   async bid() {
-    this.showTermsModal !== 'true' ? this.openTermsModal() : null
+    //TODO
+    this.store$.dispatch(
+      actions.checkingTermsAccepted({ operationType: OperationType.BID })
+    )
 
-    if (
-      this.color &&
-      !this.color.loading &&
-      this.color.auction &&
-      this.bidAmount
-    ) {
-      const bidAmount = new BigNumber(this.bidAmount).shiftedBy(6).toString()
-      await this.beaconService.bid(
-        this.color.auction.auctionId,
-        this.color.token_id,
-        bidAmount
-      )
-      console.log('Bidding done')
-    } else {
-      console.log('Bidding already in progress')
-    }
+    // if (
+    //   this.color &&
+    //   !this.color.loading &&
+    //   this.color.auction &&
+    //   this.bidAmount
+    // ) {
+    //   const bidAmount = new BigNumber(this.bidAmount).shiftedBy(6).toString()
+    //   await this.beaconService.bid(
+    //     this.color.auction.auctionId,
+    //     this.color.token_id,
+    //     bidAmount
+    //   )
+    //   console.log('Bidding done')
+    // } else {
+    //   console.log('Bidding already in progress')
+    // }
   }
 
   async claim() {
@@ -150,12 +163,17 @@ export class ArtworkCardItemComponent implements OnInit {
   }
 
   async createInitialAuction() {
-    if (this.color && !this.color.loading) {
-      await this.beaconService.createInitialAuction(this.color.token_id)
-      console.log('Creating auction done')
-    } else {
-      console.log('Creating auction already in progress')
-    }
+    //TODO
+    this.store$.dispatch(
+      actions.checkingTermsAccepted({ operationType: OperationType.INITIAL })
+    )
+
+    // if (this.color && !this.color.loading) {
+    //   await this.beaconService.createInitialAuction(this.color.token_id)
+    //   console.log('Creating auction done')
+    // } else {
+    //   console.log('Creating auction already in progress')
+    // }
   }
 
   auctionOverEvent() {
