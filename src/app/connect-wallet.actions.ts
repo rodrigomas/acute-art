@@ -37,7 +37,8 @@ export const signUpMember = createAction(
   props<{ email: string }>()
 )
 export const signUpMemberSuccess = createAction(
-  `[${featureName}] Signing Up Member To Newsletter Success`
+  `[${featureName}] Signing Up Member To Newsletter Success`,
+  props<{ email: string }>()
 )
 export const signUpMemberFailed = createAction(
   `[${featureName}] Signing Up Member To Newsletter Failed`,

@@ -56,6 +56,7 @@ import { CountdownComponent } from './components/countdown/countdown.component'
 import { ArtworkCardListComponent } from './components/artwork-card-list/artwork-card-list.component'
 import { WatchlistComponent } from './pages/watchlist/watchlist.component'
 import { ArtworkHistoryModalComponent } from './components/artwork-history-modal/artwork-history-modal.component'
+import { ToastrModule } from 'ngx-toastr'
 
 @NgModule({
   declarations: [
@@ -93,6 +94,10 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent, BsModalService],
