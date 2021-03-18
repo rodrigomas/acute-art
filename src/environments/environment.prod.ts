@@ -9,4 +9,6 @@ export const environment = {
   auctionBigmapUrl:
     'https://api.better-call.dev/v1/bigmap/edo2net/35435/keys?q=&offset=0&size=10',
   indexerUrl: 'https://tzcolors-indexer.prod.gke.papers.tech/api/v1/',
+  backendUrl: 'https://acute-arts-marketplace-backend.dev.gke.papers.tech',
+  backendApiKey: 'api:XmPS4fIKXm0N',
 }
