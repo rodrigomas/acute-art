@@ -32,7 +32,7 @@ export class FooterItemComponent implements OnInit {
       .subscribe((model) => {
         this.emailAddressControl = new FormControl(
           model,
-          addressValidatorOrOpts
+          model !== null ? addressValidatorOrOpts : null
         )
       })
   }
@@ -48,9 +48,10 @@ export class FooterItemComponent implements OnInit {
     this.store$.dispatch(
       actions.signUpMember({ email: this.emailAddressControl.value })
     )
+    this.emailAddressControl.reset()
+    this.emailAddressControl = new FormControl('')
   }
   changed(text: string) {
-    console.log('changed: ', text)
     this.modelChanged.next(text)
   }
   ngOnDestroy() {}
