@@ -57,6 +57,8 @@ import { ArtworkCardListComponent } from './components/artwork-card-list/artwork
 import { WatchlistComponent } from './pages/watchlist/watchlist.component'
 import { ArtworkHistoryModalComponent } from './components/artwork-history-modal/artwork-history-modal.component'
 import { ToastrModule } from 'ngx-toastr'
+import { TermsConditionsModalComponent } from './components/terms-conditions-modal/terms-conditions-modal.component'
+import { PlayerComponent } from './components/player/player.component'
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { ToastrModule } from 'ngx-toastr'
     CountdownComponent,
     ArtworkCardListComponent,
     WatchlistComponent,
+    TermsConditionsModalComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
