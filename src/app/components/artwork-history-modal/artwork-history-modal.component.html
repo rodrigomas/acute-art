@@ -7,9 +7,11 @@
             <h5>Trailer</h5>
             <div class="card--artwork__header">
               <ng-container
-                *ngIf="itemState === 'own'; else Trailer"
+                *ngIf="itemState === 'own'; then Main; else Trailer"
               ></ng-container>
-              <app-player [videoUrl]="color.formats[0].uri"></app-player>
+              <ng-template #Main>
+                <app-player [videoUrl]="color.formats[0].uri"></app-player>
+              </ng-template>
               <ng-template #Trailer>
                 <app-player [videoUrl]="color.artifactUri"></app-player>
               </ng-template>
