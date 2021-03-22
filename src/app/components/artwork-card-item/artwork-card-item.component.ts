@@ -136,15 +136,7 @@ export class ArtworkCardItemComponent implements OnInit {
   }
 
   async claim() {
-    if (this.color && !this.color.loading && this.color.auction) {
-      await this.beaconService.claim(
-        this.color.auction.auctionId,
-        this.color.token_id
-      )
-      console.log('Claiming done')
-    } else {
-      console.log('Claiming already in progress')
-    }
+    this.store$.dispatch(actions.claimingReward({ color: this.color }))
   }
 
   async createInitialAuction() {

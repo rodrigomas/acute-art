@@ -232,10 +232,10 @@ export class ApiService {
   constructor(private readonly http: HttpClient) {}
 
   postTransaction(
-    name = 'Monalisa',
-    operationHash = 'ooaq1cjbAv3cm8wDkXdmYBBQXZ5jof8HDGM6WMmjg5P8Ekt3ys7',
-    tzAddress = 'tz1Pm31zkj5tryYwhuqE7hhzYnULzrA5g5cf',
-    tokenId = 0
+    name: string,
+    operationHash: string,
+    tzAddress: string,
+    tokenId: number
   ): Observable<any> {
     const body: TransactionBody = {
       name: name,

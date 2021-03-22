@@ -35,6 +35,29 @@ export const disconnectWalletFailure = createAction(
   `[${featureName}] Disconnect Wallet Failure`,
   props<{ error: any }>()
 )
+export const claimingReward = createAction(
+  `[${featureName}] Claiming Reward`,
+  props<{ color: Color | undefined }>()
+)
+export const claimingRewardSuccess = createAction(
+  `[${featureName}] Claiming Reward Succeeded`,
+  props<{ color: Color; operationHash: string }>()
+)
+export const claimingRewardFailure = createAction(
+  `[${featureName}] Claiming Reward Failed`,
+  props<{ error: any }>()
+)
+export const postingTransaction = createAction(
+  `[${featureName}] Posting Transaction`,
+  props<{ color: Color; operationHash: string }>()
+)
+export const postingTransactionSuccess = createAction(
+  `[${featureName}] Posting Transaction Succeeded`
+)
+export const postingTransactionFailure = createAction(
+  `[${featureName}] Posting Transaction Failed`,
+  props<{ error: any }>()
+)
 export const checkingTermsAccepted = createAction(
   `[${featureName}] Checking if Terms & Conditions Accepted`,
   props<{

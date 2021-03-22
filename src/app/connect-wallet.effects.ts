@@ -79,6 +79,40 @@ export class ConnectWalletEffects {
       })
     )
   )
+  claimingReward$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.claimingReward),
+      switchMap(({ color }) => {
+        if (color && !color.loading && color.auction) {
+          console.log('Claiming done')
+          return this.beaconService
+            .claim(color.auction.auctionId, color.token_id)
+            .then((response) =>
+              actions.claimingRewardSuccess({
+                color: color,
+                operationHash: response.opHash,
+              })
+            )
+            .catch((error) => actions.claimingRewardFailure({ error }))
+        } else {
+          console.log('Claiming already in progress')
+          return of(
+            actions.claimingRewardFailure({ error: 'no item was provided' })
+          )
+        }
+      })
+    )
+  )
+
+  claimingRewardSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.claimingRewardSuccess),
+      map(({ color, operationHash }) => {
+        return actions.postingTransaction({ color, operationHash })
+      })
+    )
+  )
+
   checkingTermsAccepted$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.checkingTermsAccepted),
@@ -148,7 +182,32 @@ export class ConnectWalletEffects {
       })
     )
   )
-
+  postingTransaction$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.postingTransaction),
+      switchMap(({ color, operationHash }) => {
+        if (color && color.owner) {
+          return this.apiService
+            .postTransaction(
+              color.name,
+              operationHash,
+              color.owner,
+              color.token_id
+            )
+            .pipe(
+              map((response) => actions.postingTransactionSuccess()),
+              catchError((error) =>
+                of(actions.postingTransactionFailure({ error }))
+              )
+            )
+        } else {
+          return of(
+            actions.postingTransactionFailure({ error: 'no item provided' })
+          )
+        }
+      })
+    )
+  )
   bidOperation$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.bidOperation),
