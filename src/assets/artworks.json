@@ -4,23 +4,31 @@
     "decimals": 0,
     "isBooleanAmount": true,
     "name": "Edition 1 of 10",
-    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
-    "creators": ["Bjarne Melgaard"],
+    "description": "My Trip also explores the abyss of the technological underground, the endless information consumed every day and the feeling of apathy and dullness that this technology consequently produces.\nThe work is accompanied by a soundtrack created specifically for My Trip by Melgaard’s long-time collaborator Romina Cohn.",
+    "creators": ["Bjarne Melgaard", "Romina Cohn"],
     "date": "2020-11-13T00:00:00+00:00",
     "type": "film",
-    "tags": ["CryptoTaco", "taco", "collectibles"],
+    "tags": [
+      "acuteart",
+      "collectibles",
+      "dark",
+      "web",
+      "dmt",
+      "Dimethyltryptamine",
+      "hallucinogenic"
+    ],
     "language": "en",
-    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "artifactUri": "",
+    "displayUri": "",
+    "thumbnailUri": "",
+    "externalUri": "",
     "formats": [
       {
-        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+        "uri": "https://vimeo.com/manage/videos/520974949",
         "mimeType": "video/mp4",
-        "fileSize": 7134739,
-        "fileName": "Track-1.mp3",
-        "duration": "00:56:46",
+        "fileSize": 250,
+        "fileName": "mytrip_small.mp4",
+        "duration": "00:04:51",
         "dataRate": {
           "value": 320,
           "unit": "kbps"
@@ -29,28 +37,8 @@
     ],
     "attributes": [
       {
-        "name": "filling",
-        "value": "carne asada"
-      },
-      {
-        "name": "shell",
-        "value": "double corn tortilla"
-      },
-      {
-        "name": "salsa",
-        "value": "mango"
-      },
-      {
-        "name": "garnish",
-        "value": "pickled red onion"
-      },
-      {
-        "name": "secret sauce",
-        "value": "ghost pepper"
-      },
-      {
-        "name": "rarity",
-        "value": "epic"
+        "name": "acutecode",
+        "value": "06d6169d2790d1fc5da55abd367205783179ccd9"
       }
     ]
   },
@@ -58,24 +46,32 @@
     "token_id": 1,
     "decimals": 0,
     "isBooleanAmount": true,
-    "name": "Edition 2 of 10",
-    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
-    "creators": ["Bjarne Melgaard"],
+    "name": "Edition 1 of 10",
+    "description": "My Trip also explores the abyss of the technological underground, the endless information consumed every day and the feeling of apathy and dullness that this technology consequently produces.\nThe work is accompanied by a soundtrack created specifically for My Trip by Melgaard’s long-time collaborator Romina Cohn.",
+    "creators": ["Bjarne Melgaard", "Romina Cohn"],
     "date": "2020-11-13T00:00:00+00:00",
     "type": "film",
-    "tags": ["CryptoTaco", "taco", "collectibles"],
+    "tags": [
+      "acuteart",
+      "collectibles",
+      "dark",
+      "web",
+      "dmt",
+      "Dimethyltryptamine",
+      "hallucinogenic"
+    ],
     "language": "en",
-    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "artifactUri": "",
+    "displayUri": "",
+    "thumbnailUri": "",
+    "externalUri": "",
     "formats": [
       {
-        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+        "uri": "https://vimeo.com/manage/videos/520974949",
         "mimeType": "video/mp4",
-        "fileSize": 7134739,
-        "fileName": "Track-1.mp3",
-        "duration": "00:56:46",
+        "fileSize": 250,
+        "fileName": "mytrip_small.mp4",
+        "duration": "00:04:51",
         "dataRate": {
           "value": 320,
           "unit": "kbps"
@@ -84,28 +80,8 @@
     ],
     "attributes": [
       {
-        "name": "filling",
-        "value": "carne asada"
-      },
-      {
-        "name": "shell",
-        "value": "double corn tortilla"
-      },
-      {
-        "name": "salsa",
-        "value": "mango"
-      },
-      {
-        "name": "garnish",
-        "value": "pickled red onion"
-      },
-      {
-        "name": "secret sauce",
-        "value": "ghost pepper"
-      },
-      {
-        "name": "rarity",
-        "value": "epic"
+        "name": "acutecode",
+        "value": "06d6169d2790d1fc5da55abd367205783179ccd9"
       }
     ]
   },
@@ -114,98 +90,41 @@
     "decimals": 0,
     "isBooleanAmount": true,
     "name": "Edition 1 of 10",
-    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
-    "creators": ["Bjarne Melgaard"],
+    "description": "My Trip also explores the abyss of the technological underground, the endless information consumed every day and the feeling of apathy and dullness that this technology consequently produces.\nThe work is accompanied by a soundtrack created specifically for My Trip by Melgaard’s long-time collaborator Romina Cohn.",
+    "creators": ["Bjarne Melgaard", "Romina Cohn"],
     "date": "2020-11-13T00:00:00+00:00",
-    "type": "grab",
-    "tags": ["CryptoTaco", "taco", "collectibles"],
+    "type": "film",
+    "tags": [
+      "acuteart",
+      "collectibles",
+      "dark",
+      "web",
+      "dmt",
+      "Dimethyltryptamine",
+      "hallucinogenic"
+    ],
     "language": "en",
-    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
+    "artifactUri": "",
+    "displayUri": "",
+    "thumbnailUri": "",
+    "externalUri": "",
     "formats": [
       {
-        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-        "mimeType": "image/jpg",
-        "fileSize": 7134739,
-        "fileName": "image.jpg"
+        "uri": "https://vimeo.com/manage/videos/520974949",
+        "mimeType": "video/mp4",
+        "fileSize": 250,
+        "fileName": "mytrip_small.mp4",
+        "duration": "00:04:51",
+        "dataRate": {
+          "value": 320,
+          "unit": "kbps"
+        }
       }
     ],
     "attributes": [
       {
-        "name": "filling",
-        "value": "carne asada"
-      },
-      {
-        "name": "shell",
-        "value": "double corn tortilla"
-      },
-      {
-        "name": "salsa",
-        "value": "mango"
-      },
-      {
-        "name": "garnish",
-        "value": "pickled red onion"
-      },
-      {
-        "name": "secret sauce",
-        "value": "ghost pepper"
-      },
-      {
-        "name": "rarity",
-        "value": "epic"
-      }
-    ]
-  },
-  {
-    "token_id": 3,
-    "decimals": 0,
-    "isBooleanAmount": true,
-    "name": "Edition 2 of 10",
-    "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
-    "creators": ["Bjarne Melgaard"],
-    "date": "2020-11-13T00:00:00+00:00",
-    "type": "grab",
-    "tags": ["CryptoTaco", "taco", "collectibles"],
-    "language": "en",
-    "artifactUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "displayUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "thumbnailUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "externalUri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-    "formats": [
-      {
-        "uri": "ipfs://QmV3a1TAdCncfs84Gi9msDsDJVQBDt6Wb5gJRVuFRfrgtG",
-        "mimeType": "image/jpg",
-        "fileSize": 7134739,
-        "fileName": "image.jpg"
-      }
-    ],
-    "attributes": [
-      {
-        "name": "filling",
-        "value": "carne asada"
-      },
-      {
-        "name": "shell",
-        "value": "double corn tortilla"
-      },
-      {
-        "name": "salsa",
-        "value": "mango"
-      },
-      {
-        "name": "garnish",
-        "value": "pickled red onion"
-      },
-      {
-        "name": "secret sauce",
-        "value": "ghost pepper"
-      },
-      {
-        "name": "rarity",
-        "value": "epic"
+        "name": "acutecode",
+        "value": "06d6169d2790d1fc5da55abd367205783179ccd9"
       }
     ]
   }
