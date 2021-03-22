@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import {
   Color,
-  ColorCategory,
+  ArtworkType,
   SortDirection,
   SortTypes,
   StoreService,
@@ -41,7 +41,7 @@ export class ArtworkCardListComponent implements OnInit {
 
   sortType$: Observable<SortTypes>
   sortDirection$: Observable<SortDirection>
-  category$: Observable<ColorCategory>
+  type$: Observable<ArtworkType>
 
   loading$: Observable<boolean>
 
@@ -49,7 +49,7 @@ export class ArtworkCardListComponent implements OnInit {
     this.storeService.setNumberOfItems(this.numberOfItems)
     this.sortType$ = this.storeService.sortType$
     this.sortDirection$ = this.storeService.sortDirection$
-    this.category$ = this.storeService.category$
+    this.type$ = this.storeService.type$
     this.view$ = this.storeService.view$
     this.loading$ = this.storeService.loading$
   }
@@ -60,11 +60,11 @@ export class ArtworkCardListComponent implements OnInit {
     )
   }
 
-  setCategory(oldCategory: ColorCategory, category: ColorCategory): void {
-    if (oldCategory === category) {
-      this.storeService.setCategory('all')
+  setType(oldType: ArtworkType, type: ArtworkType): void {
+    if (oldType === type) {
+      this.storeService.setType('all')
     } else {
-      this.storeService.setCategory(category)
+      this.storeService.setType(type)
     }
   }
 

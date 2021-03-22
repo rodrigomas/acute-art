@@ -11,7 +11,7 @@ import { Color } from 'src/app/services/store/store.service'
 })
 export class AuctionModalComponent implements OnInit {
   color: Color | undefined
-  categoryName: string = 'category'
+  typeName: string = 'type'
 
   bidAmount: string = '0.1'
   durationDays: string = '1'

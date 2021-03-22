@@ -7,28 +7,28 @@
         {{ title }} -
         <strong>{{ count$ | async }}</strong>
       </h3>
-      <div *ngIf="category$ | async as category">
+      <div *ngIf="type$ | async as type">
         <button
-          (click)="setCategory(category, 'all')"
+          (click)="setType(type, 'all')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'all' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="type === 'all' ? 'btn-dark' : 'btn-light'"
         >
           All
         </button>
         <button
-          (click)="setCategory(category, 'film')"
+          (click)="setType(type, 'film')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'film' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="type === 'film' ? 'btn-dark' : 'btn-light'"
         >
           Film
         </button>
         <button
-          (click)="setCategory(category, 'grab')"
+          (click)="setType(type, 'grab')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'grab' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="type === 'grab' ? 'btn-dark' : 'btn-light'"
         >
           Grab
         </button>
