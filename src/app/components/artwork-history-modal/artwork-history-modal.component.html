@@ -6,7 +6,13 @@
           <ng-container *ngIf="color.type === 'film'; else background">
             <h5>Trailer</h5>
             <div class="card--artwork__header">
-              <app-player [videoUrl]="color.artifactUri"></app-player>
+              <ng-container
+                *ngIf="itemState === 'own'; else Trailer"
+              ></ng-container>
+              <app-player [videoUrl]="color.formats[0].uri"></app-player>
+              <ng-template #Trailer>
+                <app-player [videoUrl]="color.artifactUri"></app-player>
+              </ng-template>
             </div>
           </ng-container>
 

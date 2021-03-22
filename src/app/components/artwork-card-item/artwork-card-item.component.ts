@@ -19,7 +19,7 @@ import { Store } from '@ngrx/store'
 import * as actions from '../../connect-wallet.actions'
 import { State } from 'src/app/app.reducer'
 
-type ColorState =
+export type ColorState =
   | 'loading'
   | 'free'
   | 'auction'
@@ -108,6 +108,7 @@ export class ArtworkCardItemComponent implements OnInit {
     const modalRef = this.modalService.show(ArtworkHistoryModalComponent, {
       initialState: {
         color: this.color,
+        itemState: this.state,
       },
       class: 'modal-xl modal-dialog-centered',
     })
