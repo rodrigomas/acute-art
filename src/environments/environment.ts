@@ -13,6 +13,7 @@ export const environment = {
   auctionBigmapUrl:
     'https://api.better-call.dev/v1/bigmap/mainnet/409/keys?q=&offset=0&size=10000',
   indexerUrl: 'https://tzcolors-indexer.prod.gke.papers.tech/api/v1/',
+  mailchimpApiKey: 'b4779dfc471b55c2ea203c48a9fbd9d0-us17',
 }
 
 /*

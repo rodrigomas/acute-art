@@ -1,7 +1,40 @@
 <div class="container-fluid bg-dark">
   <div class="container">
-    <div class="row py-5">
-      <div class="col"></div>
+    <div class="row py-5 justify-content-center">
+      <div class="col-12 col-md-6 py-5">
+        <h5 class="text-light text-center pb-3">
+          New drop coming! Be the first to know:
+        </h5>
+        <div class="input-group input-group__two-items">
+          <input
+            [formControl]="emailAddressControl"
+            type="text"
+            class="form-control"
+            placeholder="hi@email.com"
+            aria-label="Email"
+            (ngModelChange)="changed($event)"
+            [ngClass]="{
+              'is-invalid': emailAddressControl.errors
+            }"
+          />
+          <span class="input-group-prepend">
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="addMember()"
+              [disabled]="emailAddressControl.invalid"
+            >
+              Sign Up
+            </button>
+          </span>
+          <div
+            class="invalid-feedback px-3 py-2"
+            *ngIf="emailAddressControl.invalid"
+          >
+            <strong>Please use a valid email address</strong>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
