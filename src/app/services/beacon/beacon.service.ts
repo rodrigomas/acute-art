@@ -9,7 +9,7 @@ import {
   SignPayloadResponseOutput,
   TezosOperationType,
 } from '@airgap/beacon-sdk'
-import { TezosToolkit } from '@taquito/taquito'
+import { TezosToolkit, TransactionWalletOperation } from '@taquito/taquito'
 import BigNumber from 'bignumber.js'
 import { BeaconWallet } from '@taquito/beacon-wallet'
 import { environment } from 'src/environments/environment'
@@ -118,7 +118,10 @@ export class BeaconService {
     console.log(res)
   }
 
-  async claim(auctionId: number, tokenId: number): Promise<void> {
+  async claim(
+    auctionId: number,
+    tokenId: number
+  ): Promise<TransactionWalletOperation> {
     this.storeService.setColorLoadingState(tokenId, true)
     this.storeService.setFavorite(tokenId, true)
 
@@ -127,8 +130,8 @@ export class BeaconService {
     )
     console.log(contractInstance)
     const result = await contractInstance.methods.withdraw(auctionId).send()
-
     console.log(result)
+    return result
   }
 
   async createInitialAuction(tokenId: number): Promise<void> {

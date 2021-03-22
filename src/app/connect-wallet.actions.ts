@@ -39,7 +39,7 @@ export const claimingReward = createAction(
 )
 export const claimingRewardSuccess = createAction(
   `[${featureName}] Claiming Reward Succeeded`,
-  props<{ color: Color }>()
+  props<{ color: Color; operationHash: string }>()
 )
 export const claimingRewardFailure = createAction(
   `[${featureName}] Claiming Reward Failed`,
@@ -47,7 +47,7 @@ export const claimingRewardFailure = createAction(
 )
 export const postingTransaction = createAction(
   `[${featureName}] Posting Transaction`,
-  props<{ color: Color }>()
+  props<{ color: Color; operationHash: string }>()
 )
 export const postingTransactionSuccess = createAction(
   `[${featureName}] Posting Transaction Succeeded`

@@ -78,7 +78,12 @@ export class ConnectWalletEffects {
           console.log('Claiming done')
           return this.beaconService
             .claim(color.auction.auctionId, color.token_id)
-            .then(() => actions.claimingRewardSuccess({ color: color }))
+            .then((response) =>
+              actions.claimingRewardSuccess({
+                color: color,
+                operationHash: response.opHash,
+              })
+            )
             .catch((error) => actions.claimingRewardFailure({ error }))
         } else {
           console.log('Claiming already in progress')
@@ -92,17 +97,22 @@ export class ConnectWalletEffects {
   claimingRewardSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.claimingRewardSuccess),
-      map(({ color }) => {
-        return actions.postingTransaction({ color })
+      map(({ color, operationHash }) => {
+        return actions.postingTransaction({ color, operationHash })
       })
     )
   )
   postingTransaction$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.postingTransaction),
-      switchMap(({ color }) => {
-        return this.apiService //TODO: operationHash!
-          .postTransaction(color.name, 'opHash?', color.owner, color.token_id)
+      switchMap(({ color, operationHash }) => {
+        return this.apiService
+          .postTransaction(
+            color.name,
+            operationHash,
+            color.owner,
+            color.token_id
+          )
           .pipe(
             map((response) => actions.postingTransactionSuccess()),
             catchError((error) =>
