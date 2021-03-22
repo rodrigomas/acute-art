@@ -106,19 +106,25 @@ export class ConnectWalletEffects {
     this.actions$.pipe(
       ofType(actions.postingTransaction),
       switchMap(({ color, operationHash }) => {
-        return this.apiService
-          .postTransaction(
-            color.name,
-            operationHash,
-            color.owner,
-            color.token_id
-          )
-          .pipe(
-            map((response) => actions.postingTransactionSuccess()),
-            catchError((error) =>
-              of(actions.postingTransactionFailure({ error }))
+        if (color && color.owner) {
+          return this.apiService
+            .postTransaction(
+              color.name,
+              operationHash,
+              color.owner,
+              color.token_id
             )
+            .pipe(
+              map((response) => actions.postingTransactionSuccess()),
+              catchError((error) =>
+                of(actions.postingTransactionFailure({ error }))
+              )
+            )
+        } else {
+          return of(
+            actions.postingTransactionFailure({ error: 'no item provided' })
           )
+        }
       })
     )
   )
