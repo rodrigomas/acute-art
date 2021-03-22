@@ -88,7 +88,7 @@ export class ConnectWalletEffects {
                 bidAmount,
               })
             } else {
-              return actions.showTermsModal({ operationType })
+              return actions.showTermsModal({ operationType, color, bidAmount })
             }
           }),
           catchError((error) =>
@@ -116,23 +116,33 @@ export class ConnectWalletEffects {
 
   @Effect({ dispatch: false }) showTermsModal$ = this.actions$.pipe(
     ofType(actions.showTermsModal),
-    map(({ operationType }) => {
-      //TODO: show modal
+    map(({ operationType, color, bidAmount }) => {
       let modalRef = this.modalService.show(TermsConditionsModalComponent, {
         class: 'modal-md modal-dialog-centered',
       })
       modalRef
         ? modalRef.content
-          ? (modalRef.content.opType = operationType)
+          ? ((modalRef.content.opType = operationType),
+            (modalRef.content.color = color),
+            (modalRef.content.bidAmount = bidAmount))
           : null
         : null
     })
   )
-  @Effect({ dispatch: false }) submittingTerms$ = this.actions$.pipe(
-    ofType(actions.submittingTerms),
-    map(({ key, value }) => {
-      return this.cacheService.set(key, value)
-    })
+
+  submittingTerms$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.submittingTerms),
+      map(({ key, value, operationType, color, bidAmount }) => {
+        this.cacheService.set(key, value)
+
+        return actions.checkingTermsAcceptedSuccess({
+          operationType,
+          color,
+          bidAmount,
+        })
+      })
+    )
   )
 
   bidOperation$ = createEffect(() =>

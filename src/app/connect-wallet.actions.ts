@@ -57,11 +57,21 @@ export const checkingTermsAcceptedFailure = createAction(
 )
 export const showTermsModal = createAction(
   `[${featureName}] Showing Terms & Conditions Modal`,
-  props<{ operationType: OperationType }>()
+  props<{
+    operationType: OperationType
+    color: Color | undefined
+    bidAmount: string | undefined
+  }>()
 )
 export const submittingTerms = createAction(
   `[${featureName}] Submitting Terms & Conditions Modal`,
-  props<{ key: CacheKeys; value: string; operationType: OperationType }>()
+  props<{
+    key: CacheKeys
+    value: string
+    operationType: OperationType
+    color: Color | undefined
+    bidAmount: string | undefined
+  }>()
 )
 export const bidOperation = createAction(
   `[${featureName}] Starting Bid Operation`,

@@ -70,7 +70,6 @@ export class ArtworkCardItemComponent implements OnInit {
     private readonly store$: Store<State>
   ) {
     this.showTermsModal = this.cacheService.get(CacheKeys.termsAgreed)
-    this.cacheService.delete(CacheKeys.termsAgreed)
   }
 
   ngOnInit(): void {
