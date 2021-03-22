@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
-import { CacheKeys, CacheService } from 'src/app/services/cache.service'
+import { CacheKeys } from 'src/app/services/cache.service'
 import * as actions from '../../connect-wallet.actions'
 import { Store } from '@ngrx/store'
 import { State } from 'src/app/app.reducer'
@@ -23,8 +23,7 @@ export class TermsConditionsModalComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     public modalService: BsModalService,
-    private readonly store$: Store<State>,
-    private readonly cacheService: CacheService
+    private readonly store$: Store<State>
   ) {
     this.checkedControl = new FormControl(null, Validators.required)
   }
@@ -40,10 +39,6 @@ export class TermsConditionsModalComponent implements OnInit {
         color: this.color,
         bidAmount: this.bidAmount,
       })
-    )
-    this.cacheService.set(
-      CacheKeys.termsAgreed,
-      this.checkedControl.value.toString()
     )
   }
 }
