@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Actions, createEffect, ofType } from '@ngrx/effects'
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects'
+import { ToastrService } from 'ngx-toastr'
 import { of } from 'rxjs'
 import {
   map,
@@ -11,13 +12,16 @@ import {
 } from 'rxjs/operators'
 
 import * as actions from './connect-wallet.actions'
+import { ApiService } from './services/api/api.service'
 import { BeaconService } from './services/beacon/beacon.service'
 
 @Injectable()
 export class ConnectWalletEffects {
   constructor(
     private actions$: Actions,
-    private readonly beaconService: BeaconService
+    private readonly beaconService: BeaconService,
+    private readonly apiService: ApiService,
+    private readonly toastrService: ToastrService
   ) {}
 
   setupBeacon$ = createEffect(() =>
@@ -67,5 +71,33 @@ export class ConnectWalletEffects {
           .catch((error) => actions.disconnectWalletFailure({ error }))
       })
     )
+  )
+
+  signUpMember$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.signUpMember),
+      switchMap(({ email }) => {
+        return this.apiService.addMember(email).pipe(
+          map(() => actions.signUpMemberSuccess({ email })),
+          catchError((error) => of(actions.signUpMemberFailed(error)))
+        )
+      })
+    )
+  )
+  @Effect({ dispatch: false }) showToastrSuccess$ = this.actions$.pipe(
+    ofType(actions.signUpMemberSuccess),
+    map(({ email }) => {
+      return this.toastrService.success('has been signed up', email)
+    })
+  )
+  @Effect({ dispatch: false }) showToastrFailed$ = this.actions$.pipe(
+    ofType(actions.signUpMemberFailed),
+    map(({ error }) => {
+      if (error.title === 'Member Exists') {
+        return this.toastrService.info("you're already subscribed")
+      } else {
+        return this.toastrService.error('an error has occured', error.status)
+      }
+    })
   )
 }
