@@ -10,11 +10,13 @@ import {
   mergeMap,
   filter,
 } from 'rxjs/operators'
+import { OperationType } from './components/artwork-card-item/artwork-card-item.component'
 import { TermsConditionsModalComponent } from './components/terms-conditions-modal/terms-conditions-modal.component'
 
 import * as actions from './connect-wallet.actions'
 import { BeaconService } from './services/beacon/beacon.service'
 import { CacheKeys, CacheService } from './services/cache.service'
+import BigNumber from 'bignumber.js'
 
 @Injectable()
 export class ConnectWalletEffects {
@@ -76,13 +78,16 @@ export class ConnectWalletEffects {
   checkingTermsAccepted$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.checkingTermsAccepted),
-      switchMap(({ operationType }) => {
+      switchMap(({ operationType, color, bidAmount }) => {
         return of(this.cacheService.get(CacheKeys.termsAgreed)).pipe(
           map((response) => {
             if (response) {
-              return actions.checkingTermsAcceptedSuccess({ operationType })
+              return actions.checkingTermsAcceptedSuccess({
+                operationType,
+                color,
+                bidAmount,
+              })
             } else {
-              //TODO deploy action to show modal
               return actions.showTermsModal({ operationType })
             }
           }),
@@ -90,6 +95,21 @@ export class ConnectWalletEffects {
             of(actions.checkingTermsAcceptedFailure({ error }))
           )
         )
+      })
+    )
+  )
+
+  checkingTermsAcceptedSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.checkingTermsAcceptedSuccess),
+      map(({ operationType, color, bidAmount }) => {
+        if (operationType === OperationType.BID) {
+          return actions.bidOperation({ color, bidAmount })
+        } else if (operationType === OperationType.INITIAL) {
+          return actions.createInitialAcution({ color })
+        } else {
+          return actions.invalidOperation()
+        }
       })
     )
   )
@@ -113,5 +133,43 @@ export class ConnectWalletEffects {
     map(({ key, value }) => {
       return this.cacheService.set(key, value)
     })
+  )
+
+  bidOperation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.bidOperation),
+      switchMap(async ({ color, bidAmount }) => {
+        if (color && !color.loading && color.auction && bidAmount) {
+          const amount = new BigNumber(bidAmount).shiftedBy(6).toString()
+          return this.beaconService
+            .bid(color.auction.auctionId, color.token_id, amount)
+            .then(() => {
+              return actions.bidOperationSuccess()
+            })
+            .catch((error) => actions.bidOperationFailure({ error }))
+        } else {
+          console.log('Bidding already in progress')
+          return actions.bidOperationSuccess()
+        }
+      })
+    )
+  )
+  createInitialAcution$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.createInitialAcution),
+      switchMap(async ({ color }) => {
+        if (color && !color.loading && color.auction) {
+          return this.beaconService
+            .createInitialAuction(color.token_id)
+            .then(() => {
+              return actions.createInitialAcutionSucess()
+            })
+            .catch((error) => actions.createInitialAcutionFailure({ error }))
+        } else {
+          console.log('Creating auction already in progress')
+          return actions.createInitialAcutionSucess()
+        }
+      })
+    )
   )
 }
