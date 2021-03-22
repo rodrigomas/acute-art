@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, Effect, ofType } from '@ngrx/effects'
 import { BsModalService } from 'ngx-bootstrap/modal'
-import { from, of } from 'rxjs'
+import { of } from 'rxjs'
+import { ToastrService } from 'ngx-toastr'
 import {
   map,
   catchError,
@@ -14,6 +15,7 @@ import { OperationType } from './components/artwork-card-item/artwork-card-item.
 import { TermsConditionsModalComponent } from './components/terms-conditions-modal/terms-conditions-modal.component'
 
 import * as actions from './connect-wallet.actions'
+import { ApiService } from './services/api/api.service'
 import { BeaconService } from './services/beacon/beacon.service'
 import { CacheKeys, CacheService } from './services/cache.service'
 import BigNumber from 'bignumber.js'
@@ -24,7 +26,9 @@ export class ConnectWalletEffects {
     private actions$: Actions,
     private readonly beaconService: BeaconService,
     private readonly cacheService: CacheService,
-    private readonly modalService: BsModalService
+    private readonly modalService: BsModalService,
+    private readonly apiService: ApiService,
+    private readonly toastrService: ToastrService
   ) {}
 
   setupBeacon$ = createEffect(() =>
@@ -181,5 +185,35 @@ export class ConnectWalletEffects {
         }
       })
     )
+  )
+
+  signUpMember$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.signUpMember),
+      switchMap(({ email }) => {
+        return this.apiService.addMember(email).pipe(
+          map(() => actions.signUpMemberSuccess({ email })),
+          catchError((error) => of(actions.signUpMemberFailed(error)))
+        )
+      })
+    )
+  )
+
+  @Effect({ dispatch: false }) showToastrSuccess$ = this.actions$.pipe(
+    ofType(actions.signUpMemberSuccess),
+    map(({ email }) => {
+      return this.toastrService.success('has been signed up', email)
+    })
+  )
+
+  @Effect({ dispatch: false }) showToastrFailed$ = this.actions$.pipe(
+    ofType(actions.signUpMemberFailed),
+    map(({ error }) => {
+      if (error.title === 'Member Exists') {
+        return this.toastrService.info("you're already subscribed")
+      } else {
+        return this.toastrService.error('an error has occured', error.status)
+      }
+    })
   )
 }

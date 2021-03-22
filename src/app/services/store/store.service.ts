@@ -29,6 +29,8 @@ export interface Color {
   token_id: number
   type: string
   thumbnailUri: string
+  artifactUri: string
+  creators: string
   auction: AuctionItem | undefined
   owner: string | undefined
   loading: boolean

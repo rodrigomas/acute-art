@@ -103,3 +103,15 @@ export const createInitialAcutionFailure = createAction(
 export const invalidOperation = createAction(
   `[${featureName}] Invalid Operation Type Submitted`
 )
+export const signUpMember = createAction(
+  `[${featureName}] Signing Up Member To Newsletter`,
+  props<{ email: string }>()
+)
+export const signUpMemberSuccess = createAction(
+  `[${featureName}] Signing Up Member To Newsletter Success`,
+  props<{ email: string }>()
+)
+export const signUpMemberFailed = createAction(
+  `[${featureName}] Signing Up Member To Newsletter Failed`,
+  props<{ error: any }>()
+)
