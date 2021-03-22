@@ -15,6 +15,9 @@ import {
 } from 'src/app/services/store/store.service'
 import { ArtworkHistoryModalComponent } from '../artwork-history-modal/artwork-history-modal.component'
 import { TermsConditionsModalComponent } from '../terms-conditions-modal/terms-conditions-modal.component'
+import { Store } from '@ngrx/store'
+import * as actions from '../../connect-wallet.actions'
+import { State } from 'src/app/app.reducer'
 
 type ColorState =
   | 'loading'
@@ -58,7 +61,8 @@ export class ArtworkCardItemComponent implements OnInit {
     private readonly modalService: BsModalService,
     private readonly beaconService: BeaconService,
     private readonly storeService: StoreService,
-    private readonly cacheService: CacheService
+    private readonly cacheService: CacheService,
+    private readonly store$: Store<State>
   ) {
     this.showTermsModal = this.cacheService.get(CacheKeys.termsAgreed)
   }
@@ -138,15 +142,7 @@ export class ArtworkCardItemComponent implements OnInit {
   }
 
   async claim() {
-    if (this.color && !this.color.loading && this.color.auction) {
-      await this.beaconService.claim(
-        this.color.auction.auctionId,
-        this.color.token_id
-      )
-      console.log('Claiming done')
-    } else {
-      console.log('Claiming already in progress')
-    }
+    this.store$.dispatch(actions.claimingReward({ color: this.color }))
   }
 
   async createInitialAuction() {

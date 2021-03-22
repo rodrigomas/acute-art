@@ -1,5 +1,6 @@
 import { AccountInfo } from '@airgap/beacon-sdk'
 import { createAction, props } from '@ngrx/store'
+import { Color } from './services/store/store.service'
 
 const featureName = 'ConnectWallet'
 
@@ -30,5 +31,28 @@ export const disconnectWalletSuccess = createAction(
 )
 export const disconnectWalletFailure = createAction(
   `[${featureName}] Disconnect Wallet Failure`,
+  props<{ error: any }>()
+)
+export const claimingReward = createAction(
+  `[${featureName}] Claiming Reward`,
+  props<{ color: Color | undefined }>()
+)
+export const claimingRewardSuccess = createAction(
+  `[${featureName}] Claiming Reward Succeeded`,
+  props<{ color: Color }>()
+)
+export const claimingRewardFailure = createAction(
+  `[${featureName}] Claiming Reward Failed`,
+  props<{ error: any }>()
+)
+export const postingTransaction = createAction(
+  `[${featureName}] Posting Transaction`,
+  props<{ color: Color }>()
+)
+export const postingTransactionSuccess = createAction(
+  `[${featureName}] Posting Transaction Succeeded`
+)
+export const postingTransactionFailure = createAction(
+  `[${featureName}] Posting Transaction Failed`,
   props<{ error: any }>()
 )
