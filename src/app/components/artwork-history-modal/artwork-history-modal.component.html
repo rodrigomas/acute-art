@@ -3,11 +3,10 @@
     <div class="col-12 col-md-8 pb-3 pb-md-0">
       <div class="card">
         <div class="card-body">
-          <!-- TODO: Whitelabeld Vimeo Player if category film -->
           <ng-container *ngIf="color.type === 'film'; else background">
             <h5>Trailer</h5>
             <div class="card--artwork__header">
-              <app-player [videoUrl]="videoExampleUrl"></app-player>
+              <app-player [videoUrl]="color.artifactUri"></app-player>
             </div>
           </ng-container>
 
@@ -15,10 +14,11 @@
             <div
               class="card--artwork__header"
               [ngStyle]="{
-                'background-image': 'url(' + color.thumbnailUri + ')'
+                'background-image': 'url(' + color.artifactUri + ')'
               }"
             ></div
           ></ng-template>
+          <p class="pt-3">{{ color.description }}</p>
         </div>
       </div>
     </div>
