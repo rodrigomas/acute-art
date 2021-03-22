@@ -11,4 +11,5 @@ export const environment = {
   indexerUrl: 'https://tzcolors-indexer.prod.gke.papers.tech/api/v1/',
   backendUrl: 'https://acute-arts-marketplace-backend.dev.gke.papers.tech',
   backendApiKey: 'api:XmPS4fIKXm0N',
+  mailchimpApiKey: 'b4779dfc471b55c2ea203c48a9fbd9d0-us17',
 }

@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="px-4 d-flex flex-column">
-      <h3 class="m-0">
+      <h3 class="m-0 pt-3">
         {{ color.name }}
         <span
           *ngIf="
@@ -48,14 +48,11 @@
         >
       </h3>
 
+      <p class="text-muted font-weight-light m-0">
+        {{ color.creators }}
+      </p>
       <p class="text-muted font-weight-light">
-        <a
-          href
-          class="text-muted font-weight-light"
-          [routerLink]="'/color/' + color.token_id"
-          >#{{ color.token_id }}</a
-        >
-        • {{ color.type | titlecase }}
+        {{ color.type | titlecase }}
       </p>
       <ng-container *ngIf="state === 'free'">
         <div class="row py-2">
@@ -380,6 +377,7 @@
           </ng-container>
         </ng-container>
 
+        <!--
         <ng-container *ngIf="state === 'free'">
           <button
             [disabled]="color.loading"
@@ -402,6 +400,7 @@
             ></span>
           </button>
         </ng-container>
+        -->
       </div>
     </div>
   </div>
