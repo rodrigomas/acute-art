@@ -125,9 +125,8 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/",
-            "message": "Deploying latest changes",
-            "cname": "www.tzcolors.io"
+            "baseHref": "/acute-art/",
+            "message": "Deploying latest changes"
           }
         }
       }
