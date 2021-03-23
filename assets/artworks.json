@@ -1,0 +1,174 @@
+[
+  {
+    "token_id": 0,
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "name": "Edition 1 of 10",
+    "description": "My Trip also explores the abyss of the technological underground, the endless information consumed every day and the feeling of apathy and dullness that this technology consequently produces.\nThe work is accompanied by a soundtrack created specifically for My Trip by Melgaard’s long-time collaborator Romina Cohn.",
+    "creators": ["Bjarne Melgaard", "Romina Cohn"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "film",
+    "tags": [
+      "acuteart",
+      "collectibles",
+      "dark",
+      "web",
+      "dmt",
+      "Dimethyltryptamine",
+      "hallucinogenic"
+    ],
+    "language": "en",
+    "artifactUri": "https://vimeo.com/520974949/279f38821e",
+    "displayUri": "",
+    "thumbnailUri": "/assets/placeholder.png",
+    "externalUri": "",
+    "formats": [
+      {
+        "uri": "https://vimeo.com/365531165",
+        "mimeType": "video/mp4",
+        "fileSize": 250,
+        "fileName": "mytrip_small.mp4",
+        "duration": "00:04:51",
+        "dataRate": {
+          "value": 320,
+          "unit": "kbps"
+        }
+      }
+    ],
+    "attributes": [
+      {
+        "name": "acutecode",
+        "value": "06d6169d2790d1fc5da55abd367205783179ccd9"
+      }
+    ]
+  },
+  {
+    "token_id": 1,
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "name": "Edition 2 of 10",
+    "description": "My Trip also explores the abyss of the technological underground, the endless information consumed every day and the feeling of apathy and dullness that this technology consequently produces.\nThe work is accompanied by a soundtrack created specifically for My Trip by Melgaard’s long-time collaborator Romina Cohn.",
+    "creators": ["Bjarne Melgaard", "Romina Cohn"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "grab",
+    "tags": [
+      "acuteart",
+      "collectibles",
+      "dark",
+      "web",
+      "dmt",
+      "Dimethyltryptamine",
+      "hallucinogenic"
+    ],
+    "language": "en",
+    "artifactUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "displayUri": "",
+    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "externalUri": "",
+    "formats": [
+      {
+        "uri": "https://vimeo.com/manage/videos/520974949",
+        "mimeType": "video/mp4",
+        "fileSize": 250,
+        "fileName": "mytrip_small.mp4",
+        "duration": "00:04:51",
+        "dataRate": {
+          "value": 320,
+          "unit": "kbps"
+        }
+      }
+    ],
+    "attributes": [
+      {
+        "name": "acutecode",
+        "value": "06d6169d2790d1fc5da55abd367205783179ccd9"
+      }
+    ]
+  },
+  {
+    "token_id": 2,
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "name": "Edition 3 of 10",
+    "description": "My Trip also explores the abyss of the technological underground, the endless information consumed every day and the feeling of apathy and dullness that this technology consequently produces.\nThe work is accompanied by a soundtrack created specifically for My Trip by Melgaard’s long-time collaborator Romina Cohn.",
+    "creators": ["Bjarne Melgaard", "Romina Cohn"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "grab",
+    "tags": [
+      "acuteart",
+      "collectibles",
+      "dark",
+      "web",
+      "dmt",
+      "Dimethyltryptamine",
+      "hallucinogenic"
+    ],
+    "language": "en",
+    "artifactUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "displayUri": "",
+    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "externalUri": "",
+    "formats": [
+      {
+        "uri": "https://vimeo.com/manage/videos/520974949",
+        "mimeType": "video/mp4",
+        "fileSize": 250,
+        "fileName": "mytrip_small.mp4",
+        "duration": "00:04:51",
+        "dataRate": {
+          "value": 320,
+          "unit": "kbps"
+        }
+      }
+    ],
+    "attributes": [
+      {
+        "name": "acutecode",
+        "value": "06d6169d2790d1fc5da55abd367205783179ccd9"
+      }
+    ]
+  },
+  {
+    "token_id": 3,
+    "decimals": 0,
+    "isBooleanAmount": true,
+    "name": "Edition 4 of 10",
+    "description": "My Trip also explores the abyss of the technological underground, the endless information consumed every day and the feeling of apathy and dullness that this technology consequently produces.\nThe work is accompanied by a soundtrack created specifically for My Trip by Melgaard’s long-time collaborator Romina Cohn.",
+    "creators": ["Bjarne Melgaard", "Romina Cohn"],
+    "date": "2020-11-13T00:00:00+00:00",
+    "type": "film",
+    "tags": [
+      "acuteart",
+      "collectibles",
+      "dark",
+      "web",
+      "dmt",
+      "Dimethyltryptamine",
+      "hallucinogenic"
+    ],
+    "language": "en",
+    "artifactUri": "https://vimeo.com/520974949/279f38821e",
+    "displayUri": "",
+    "thumbnailUri": "/assets/placeholder.png",
+    "externalUri": "",
+    "formats": [
+      {
+        "uri": "https://vimeo.com/365531165",
+        "mimeType": "video/mp4",
+        "fileSize": 250,
+        "fileName": "mytrip_small.mp4",
+        "duration": "00:04:51",
+        "dataRate": {
+          "value": 320,
+          "unit": "kbps"
+        }
+      }
+    ],
+    "attributes": [
+      {
+        "name": "acutecode",
+        "value": "06d6169d2790d1fc5da55abd367205783179ccd9"
+      }
+    ]
+  }
+]
