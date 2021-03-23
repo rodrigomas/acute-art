@@ -20,7 +20,7 @@
     "language": "en",
     "artifactUri": "https://vimeo.com/520974949/279f38821e",
     "displayUri": "",
-    "thumbnailUri": "/assets/placeholder.png",
+    "thumbnailUri": "./assets/placeholder.png",
     "externalUri": "",
     "formats": [
       {
@@ -61,9 +61,9 @@
       "hallucinogenic"
     ],
     "language": "en",
-    "artifactUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "artifactUri": "./assets/BjarneMelgaard_MyTrip_HighRes-2.png",
     "displayUri": "",
-    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "thumbnailUri": "./assets/BjarneMelgaard_MyTrip_HighRes-2.png",
     "externalUri": "",
     "formats": [
       {
@@ -104,9 +104,9 @@
       "hallucinogenic"
     ],
     "language": "en",
-    "artifactUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "artifactUri": "./assets/BjarneMelgaard_MyTrip_HighRes-2.png",
     "displayUri": "",
-    "thumbnailUri": "/assets/BjarneMelgaard_MyTrip_HighRes-2.png",
+    "thumbnailUri": "./assets/BjarneMelgaard_MyTrip_HighRes-2.png",
     "externalUri": "",
     "formats": [
       {
@@ -149,7 +149,7 @@
     "language": "en",
     "artifactUri": "https://vimeo.com/520974949/279f38821e",
     "displayUri": "",
-    "thumbnailUri": "/assets/placeholder.png",
+    "thumbnailUri": "./assets/placeholder.png",
     "externalUri": "",
     "formats": [
       {
