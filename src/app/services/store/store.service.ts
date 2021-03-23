@@ -36,6 +36,17 @@ export interface Color {
   loading: boolean
   isFavorite: boolean
   previousAuction: PreviousAuctionItem | undefined
+  formats: {
+    uri: string
+    mimeType: string
+    fileSize: number
+    fileName: string
+    duration: string
+    dataRate: {
+      value: number
+      unit: string
+    }[]
+  }[]
 }
 
 export interface Child {

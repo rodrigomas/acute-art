@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 import { Color } from 'src/app/services/store/store.service'
 import { environment } from 'src/environments/environment'
+import { ColorState } from '../artwork-card-item/artwork-card-item.component'
 
 export interface Result {
   consumed_gas: number
@@ -105,9 +106,9 @@ export interface HistoryItem {
 export class ArtworkHistoryModalComponent implements OnInit {
   color: Color | undefined
 
-  history: HistoryItem[] | undefined
+  itemState: ColorState = 'loading'
 
-  public videoExampleUrl = 'https://vimeo.com/520974949/279f38821e' //TODO change to dynamic attribute
+  history: HistoryItem[] | undefined
 
   constructor(
     public bsModalRef: BsModalRef,
