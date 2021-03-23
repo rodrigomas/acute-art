@@ -1,0 +1,45 @@
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12 pb-3 pb-md-0">
+      <div class="card">
+        <div class="card-body">
+          <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="bsModalRef.hide()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3>Terms and Conditions</h3>
+          <p>Please read the following carefully before proceeding.</p>
+
+          <div class="form-check py-3">
+            <input
+              [formControl]="checkedControl"
+              class="form-check-input"
+              type="checkbox"
+              id="check"
+            />
+
+            <label for="check">
+              I agree to the
+              <a class="form-check-label" href="#" target="_blank"
+                >Terms and Conditions</a
+              ></label
+            >
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-block btn-success mt-3"
+            (click)="submit(); bsModalRef.hide()"
+            [disabled]="!checkedControl.value"
+          >
+            Agree
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

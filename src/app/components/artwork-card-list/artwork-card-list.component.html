@@ -7,43 +7,34 @@
         {{ title }} -
         <strong>{{ count$ | async }}</strong>
       </h3>
-      <!--
-      <div *ngIf="category$ | async as category">
+      <div *ngIf="type$ | async as type">
         <button
-          (click)="setCategory(category, 'all')"
+          (click)="setType(type, 'all')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'all' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="type === 'all' ? 'btn-dark' : 'btn-light'"
         >
           All
         </button>
         <button
-          (click)="setCategory(category, 'standard')"
+          (click)="setType(type, 'film')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'standard' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="type === 'film' ? 'btn-dark' : 'btn-light'"
         >
-          Standard
+          Film
         </button>
         <button
-          (click)="setCategory(category, 'epic')"
+          (click)="setType(type, 'grab')"
           type="button"
           class="btn btn-sm mr-3"
-          [ngClass]="category === 'epic' ? 'btn-dark' : 'btn-light'"
+          [ngClass]="type === 'grab' ? 'btn-dark' : 'btn-light'"
         >
-          Epic
-        </button>
-        <button
-          (click)="setCategory(category, 'legendary')"
-          type="button"
-          class="btn btn-sm mr-3"
-          [ngClass]="category === 'legendary' ? 'btn-dark' : 'btn-light'"
-        >
-          Legendary
+          Grab
         </button>
       </div>
-      -->
     </div>
+    <!--
     <div class="col-12 col-md-4 offset-0 offset-md-2">
       <div class="input-group">
         <input
@@ -56,7 +47,9 @@
         />
       </div>
     </div>
+    -->
   </div>
+  <!--
   <div class="row my-3">
     <ng-container *ngIf="sortDirection$ | async as sortingDirection">
       <div
@@ -124,6 +117,7 @@
       </div>
     </ng-container>
   </div>
+  -->
 </div>
 <div class="row">
   <ng-container *ngIf="count$ | async; then content; else empty"></ng-container>

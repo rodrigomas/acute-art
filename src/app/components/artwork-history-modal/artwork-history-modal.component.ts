@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 import { Color } from 'src/app/services/store/store.service'
 import { environment } from 'src/environments/environment'
+import { ColorState } from '../artwork-card-item/artwork-card-item.component'
 
 export interface Result {
   consumed_gas: number
@@ -104,6 +105,8 @@ export interface HistoryItem {
 })
 export class ArtworkHistoryModalComponent implements OnInit {
   color: Color | undefined
+
+  itemState: ColorState = 'loading'
 
   history: HistoryItem[] | undefined
 
