@@ -24,10 +24,10 @@ $h1-font-size: 30px;
 /* custom colors */
 $theme-colors: (
   'primary': #2c7df7,
-  'standard': #018e42,
-  'epic': #4a90e2,
-  'legendary': #9013fe,
+  'success': #61dd56,
+  'danger': #f45f5f,
   'light-dark': #fafafa,
+  'white': #fff,
 );
 
 $border-radius: 8px;
@@ -65,9 +65,17 @@ $link-hover-decoration: none;
   border-radius: $border-radius;
 }
 
-.input-group-prepend .btn {
-  border-top-right-radius: $border-radius !important;
-  border-bottom-right-radius: $border-radius !important;
+.card,
+app-footer-item {
+  .input-group-prepend .btn,
+  .input-group-append .btn {
+    border-top-right-radius: $border-radius !important;
+    border-bottom-right-radius: $border-radius !important;
+  }
+}
+
+.btn-success {
+  color: #fff !important;
 }
 
 .panel {
@@ -99,6 +107,12 @@ app-auction-modal {
       height: initial !important;
     }
   }
+}
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn {
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
 }
 
 @import '../node_modules/bootstrap/scss/bootstrap';

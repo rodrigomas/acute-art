@@ -16,8 +16,6 @@ import {
 } from '@fortawesome/angular-fontawesome'
 import {
   faStar as farStar,
-  faMoon as farMoon,
-  faSun as farSun,
   faWindowRestore,
 } from '@fortawesome/free-regular-svg-icons'
 import {
@@ -27,20 +25,20 @@ import {
   faSortAmountDown,
   faSortAlphaUp,
   faSortAlphaDown,
+  faPlay,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faInstagramSquare,
-  faReddit,
-  faTwitter,
-  faDiscord,
+  faYoutubeSquare,
+  faTwitterSquare,
+  faFacebookSquare,
 } from '@fortawesome/free-brands-svg-icons'
 import { MomentModule } from 'ngx-moment'
 
 import { HeaderItemComponent } from './components/header-item/header-item.component'
-import { LandingComponent } from './pages/landing/landing.component'
 import { FooterItemComponent } from './components/footer-item/footer-item.component'
 import { ArtworkCardItemComponent } from './components/artwork-card-item/artwork-card-item.component'
-import { ExploreComponent } from './pages/explore/explore.component'
+import { CollectComponent } from './pages/collect/collect.component'
 import { AuctionsComponent } from './pages/auctions/auctions.component'
 import { MyArtworksComponent } from './pages/my-artworks/my-artworks.component'
 import { AuctionModalComponent } from './components/auction-modal/auction-modal.component'
@@ -51,22 +49,24 @@ import { AppEffects } from './app.effects'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment'
 import { ConnectWalletEffects } from './connect-wallet.effects'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ShortenPipe } from './pipes/shorten.pipe'
 import { AmountConverterPipe } from './pipes/amount.pipe'
 import { CountdownComponent } from './components/countdown/countdown.component'
 import { ArtworkCardListComponent } from './components/artwork-card-list/artwork-card-list.component'
 import { WatchlistComponent } from './pages/watchlist/watchlist.component'
 import { ArtworkHistoryModalComponent } from './components/artwork-history-modal/artwork-history-modal.component'
+import { ToastrModule } from 'ngx-toastr'
+import { TermsConditionsModalComponent } from './components/terms-conditions-modal/terms-conditions-modal.component'
+import { PlayerComponent } from './components/player/player.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderItemComponent,
-    LandingComponent,
     FooterItemComponent,
     ArtworkCardItemComponent,
-    ExploreComponent,
+    CollectComponent,
     AuctionsComponent,
     MyArtworksComponent,
     AuctionModalComponent,
@@ -76,6 +76,8 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
     CountdownComponent,
     ArtworkCardListComponent,
     WatchlistComponent,
+    TermsConditionsModalComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +97,11 @@ import { ArtworkHistoryModalComponent } from './components/artwork-history-modal
     EffectsModule.forRoot([AppEffects, ConnectWalletEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent, BsModalService],
@@ -106,14 +113,13 @@ export class AppModule {
       faCog,
       faWindowRestore,
       faInstagramSquare,
-      faReddit,
-      faTwitter,
-      faDiscord
+      faFacebookSquare,
+      faTwitterSquare,
+      faYoutubeSquare,
+      faPlay
     )
     library.addIcons(
       farStar,
-      farMoon,
-      farSun,
       faSortAmountUp,
       faSortAmountDown,
       faSortAlphaUp,

@@ -1,4 +1,3 @@
-import { state } from '@angular/animations'
 import { Component, OnInit, Input } from '@angular/core'
 import BigNumber from 'bignumber.js'
 
@@ -6,6 +5,7 @@ import { BsModalService } from 'ngx-bootstrap/modal'
 import { first } from 'rxjs/operators'
 import { AuctionModalComponent } from 'src/app/components/auction-modal/auction-modal.component'
 import { BeaconService } from 'src/app/services/beacon/beacon.service'
+import { CacheKeys, CacheService } from 'src/app/services/cache.service'
 import {
   Color,
   isActiveAuction,
@@ -14,8 +14,12 @@ import {
   StoreService,
 } from 'src/app/services/store/store.service'
 import { ArtworkHistoryModalComponent } from '../artwork-history-modal/artwork-history-modal.component'
+import { TermsConditionsModalComponent } from '../terms-conditions-modal/terms-conditions-modal.component'
+import { Store } from '@ngrx/store'
+import * as actions from '../../connect-wallet.actions'
+import { State } from 'src/app/app.reducer'
 
-type ColorState =
+export type ColorState =
   | 'loading'
   | 'free'
   | 'auction'
@@ -24,6 +28,11 @@ type ColorState =
   | 'owned'
   | 'own'
 
+export enum OperationType {
+  BID = 'bid',
+  INITIAL = 'initial',
+  UNDEFINED = 'undefined',
+}
 @Component({
   selector: 'app-artwork-card-item',
   templateUrl: './artwork-card-item.component.html',
@@ -47,26 +56,23 @@ export class ArtworkCardItemComponent implements OnInit {
   bidAmount: string | undefined
   minBidAmount: string | undefined
 
-  categoryName: 'legendary' | 'epic' | 'Standard' = 'Standard'
-
   isOver: boolean = false
 
   state: ColorState = 'loading'
 
+  showTermsModal: string | null
+
   constructor(
     private readonly modalService: BsModalService,
     private readonly beaconService: BeaconService,
-    private readonly storeService: StoreService
-  ) {}
+    private readonly storeService: StoreService,
+    private readonly cacheService: CacheService,
+    private readonly store$: Store<State>
+  ) {
+    this.showTermsModal = this.cacheService.get(CacheKeys.termsAgreed)
+  }
 
   ngOnInit(): void {
-    if (this.color?.category === 'E') {
-      this.categoryName = 'legendary'
-    }
-    if (this.color?.category === 'R') {
-      this.categoryName = 'epic'
-    }
-
     if (this.color && this.color.auction) {
       this.bidAmount = new BigNumber(this.color.auction.bidAmount)
         .plus(100_000)
@@ -91,7 +97,7 @@ export class ArtworkCardItemComponent implements OnInit {
       initialState: {
         color: this.color,
       },
-      class: 'modal-lg modal-dialog-centered',
+      class: 'modal-xl modal-dialog-centered',
     })
   }
 
@@ -102,8 +108,15 @@ export class ArtworkCardItemComponent implements OnInit {
     const modalRef = this.modalService.show(ArtworkHistoryModalComponent, {
       initialState: {
         color: this.color,
+        itemState: this.state,
       },
-      class: 'modal-lg modal-dialog-centered',
+      class: 'modal-xl modal-dialog-centered',
+    })
+  }
+
+  openTermsModal() {
+    const modalRef = this.modalService.show(TermsConditionsModalComponent, {
+      class: 'modal-md modal-dialog-centered',
     })
   }
 
@@ -114,43 +127,27 @@ export class ArtworkCardItemComponent implements OnInit {
   }
 
   async bid() {
-    if (
-      this.color &&
-      !this.color.loading &&
-      this.color.auction &&
-      this.bidAmount
-    ) {
-      const bidAmount = new BigNumber(this.bidAmount).shiftedBy(6).toString()
-      await this.beaconService.bid(
-        this.color.auction.auctionId,
-        this.color.token_id,
-        bidAmount
-      )
-      console.log('Bidding done')
-    } else {
-      console.log('Bidding already in progress')
-    }
+    this.store$.dispatch(
+      actions.checkingTermsAccepted({
+        operationType: OperationType.BID,
+        color: this.color,
+        bidAmount: this.bidAmount,
+      })
+    )
   }
 
   async claim() {
-    if (this.color && !this.color.loading && this.color.auction) {
-      await this.beaconService.claim(
-        this.color.auction.auctionId,
-        this.color.token_id
-      )
-      console.log('Claiming done')
-    } else {
-      console.log('Claiming already in progress')
-    }
+    this.store$.dispatch(actions.claimingReward({ color: this.color }))
   }
 
   async createInitialAuction() {
-    if (this.color && !this.color.loading) {
-      await this.beaconService.createInitialAuction(this.color.token_id)
-      console.log('Creating auction done')
-    } else {
-      console.log('Creating auction already in progress')
-    }
+    this.store$.dispatch(
+      actions.checkingTermsAccepted({
+        operationType: OperationType.INITIAL,
+        color: this.color,
+        bidAmount: undefined,
+      })
+    )
   }
 
   auctionOverEvent() {

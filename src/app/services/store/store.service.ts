@@ -20,19 +20,33 @@ import {
 import { AccountInfo } from '@airgap/beacon-sdk'
 var deepEqual = require('fast-deep-equal/es6')
 
-const colorsFromStorage: Color[] = require('../../../assets/colors.json')
+const colorsFromStorage: Color[] = require('../../../assets/artworks.json')
 
 export interface Color {
   name: string
   description: string
   symbol: string
   token_id: number
-  category: string
+  type: string
+  thumbnailUri: string
+  artifactUri: string
+  creators: string
   auction: AuctionItem | undefined
   owner: string | undefined
   loading: boolean
   isFavorite: boolean
   previousAuction: PreviousAuctionItem | undefined
+  formats: {
+    uri: string
+    mimeType: string
+    fileSize: number
+    fileName: string
+    duration: string
+    dataRate: {
+      value: number
+      unit: string
+    }[]
+  }[]
 }
 
 export interface Child {
@@ -93,7 +107,7 @@ export interface PreviousAuctionItem {
 
 export type ViewTypes = 'explore' | 'auctions' | 'my-colors' | 'watchlist'
 
-export type ColorCategory = 'all' | 'legendary' | 'epic' | 'standard'
+export type ArtworkType = 'all' | 'film' | 'grab'
 
 export type SortTypes = 'name' | 'price' | 'activity' | 'time'
 export type SortDirection = 'asc' | 'desc'
@@ -134,7 +148,7 @@ export class StoreService {
 
   public sortType$: Observable<SortTypes>
   public sortDirection$: Observable<SortDirection>
-  public category$: Observable<ColorCategory>
+  public type$: Observable<ArtworkType>
   public view$: Observable<ViewTypes>
 
   public loading$: Observable<boolean>
@@ -154,7 +168,7 @@ export class StoreService {
   private _sortDirection: BehaviorSubject<SortDirection> = new BehaviorSubject<SortDirection>(
     'desc'
   )
-  private _category: BehaviorSubject<ColorCategory> = new BehaviorSubject<ColorCategory>(
+  private _type: BehaviorSubject<ArtworkType> = new BehaviorSubject<ArtworkType>(
     'all'
   )
   private _view: BehaviorSubject<ViewTypes> = new BehaviorSubject<ViewTypes>(
@@ -197,7 +211,7 @@ export class StoreService {
     this.accountInfo$ = this._accountInfo.asObservable()
     this.sortType$ = this._sortType.asObservable()
     this.sortDirection$ = this._sortDirection.asObservable()
-    this.category$ = this._category.asObservable()
+    this.type$ = this._type.asObservable()
     this.view$ = this._view.asObservable()
     this.loading$ = this._loading.asObservable()
     this.favorites$ = this._favorites.asObservable()
@@ -209,9 +223,9 @@ export class StoreService {
         // distinctUntilChanged(),
         tap((x) => console.log('colors changed', x))
       ),
-      this._category.pipe(
+      this._type.pipe(
         distinctUntilChanged(),
-        tap((x) => console.log('category changed', x))
+        tap((x) => console.log('type changed', x))
       ),
       this._view.pipe(
         distinctUntilChanged(),
@@ -262,7 +276,7 @@ export class StoreService {
       map(
         ([
           colors,
-          category,
+          type,
           view,
           ownerInfo,
           auctionInfo,
@@ -275,7 +289,7 @@ export class StoreService {
           sortDirection,
         ]: [
           Color[],
-          ColorCategory,
+          ArtworkType,
           ViewTypes,
           Map<number, string>,
           Map<number, AuctionItem>,
@@ -309,7 +323,7 @@ export class StoreService {
                   isSeller(c, accountInfo)
                 : true
             )
-            .filter((c) => category === 'all' || c.category === category)
+            .filter((c) => type === 'all' || c.type === type)
             .filter(
               (c) =>
                 c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -418,12 +432,12 @@ export class StoreService {
     this._view.next(view)
   }
   resetFilters() {
-    this._category.next('all')
+    this._type.next('all')
     this._searchTerm.next('')
     this._numberOfItems.next(12)
   }
-  setCategory(category: ColorCategory) {
-    this._category.next(category)
+  setType(type: ArtworkType) {
+    this._type.next(type)
   }
   setFilter() {}
   setSortType(type: SortTypes) {
@@ -461,7 +475,7 @@ export class StoreService {
 
   async getColorOwners() {
     const data = await this.http
-      .get<RootObject[]>(`${environment.colorsBigmapUrl}`)
+      .get<RootObject[]>(`${environment.artworkBigmapUrl}`)
       .toPromise()
 
     const ownerInfo = new Map<number, string>()

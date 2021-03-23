@@ -5,10 +5,10 @@ import { Color, StoreService } from 'src/app/services/store/store.service'
 
 @Component({
   selector: 'app-explore',
-  templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.scss'],
+  templateUrl: './collect.component.html',
+  styleUrls: ['./collect.component.scss'],
 })
-export class ExploreComponent implements OnInit {
+export class CollectComponent implements OnInit {
   public colors$: Observable<Color[]> = new Observable()
   public colorsCount$: Observable<number> = new Observable()
 
