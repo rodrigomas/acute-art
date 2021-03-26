@@ -2,27 +2,22 @@
   <div class="row">
     <div class="col-12 col-md-5 pb-3 pb-md-0">
       <div class="card">
-        <div
-          class="card--artwork__header card--color--type__standard card-color--type__standard d-flex justify-content-end align-items-end m-4"
-          [ngStyle]="{ 'background-color': color.symbol }"
-          [ngClass]="{
-            'card--color--type__standard': color.type === 'standard',
-            'card--color--type__epic': color.type === 'epic',
-            'card--color--type__legendary': color.type === 'legendary'
-          }"
-        >
-          <div class="card--color--type__container m-2">
-            <div
-              class="card-color--type--symbol d-flex justify-content-center align-items-center"
-            >
-              <p class="m-0">{{ color.type | slice: 0:1 | uppercase }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="px-4">
-          <h3 class="m-0">{{ color.name }}</h3>
+        <div class="card-body">
+          <div
+            class="card--artwork__header"
+            [ngStyle]="{
+              'background-image': 'url(' + color.thumbnailUri + ')'
+            }"
+          ></div>
+          <h3 class="m-0 pt-3">
+            {{ color.name }}
+          </h3>
+
+          <p class="text-muted font-weight-light m-0">
+            {{ color.creators }}
+          </p>
           <p class="text-muted font-weight-light">
-            #{{ color.token_id }} • {{ color.type | titlecase }}
+            {{ color.type | titlecase }}
           </p>
         </div>
       </div>
@@ -34,7 +29,7 @@
           <div class="row py-4">
             <div class="col-12 col-md-7">
               <label class="mb-0">Minimum Price</label>
-              <small class="d-inline-block text-muted mb-2"
+              <small class="d-block text-muted mb-2"
                 >Minimum price is 0.1 tez</small
               >
               <div class="input-group mb-4">
@@ -53,11 +48,11 @@
                   <span class="input-group-text">tez</span>
                 </div>
               </div>
-              <div class="d-inline-block text-muted mb-2">
+              <div class="d-block text-muted mb-2">
                 {{ amountError }}
               </div>
               <label class="mb-0">Auction Duration</label>
-              <small class="d-inline-block text-muted mb-2"
+              <small class="d-block text-muted mb-2"
                 >Minimum duration is half a day</small
               >
               <div class="input-group mb-4">
@@ -77,12 +72,16 @@
                   <span class="input-group-text">days</span>
                 </div>
               </div>
-              <div class="d-inline-block text-muted mb-2">
+              <div class="d-block text-muted mb-2">
                 {{ durationError }}
               </div>
             </div>
           </div>
-          <button (click)="createAuction()" type="button" class="btn btn-light">
+          <button
+            (click)="createAuction()"
+            type="button"
+            class="btn btn-success"
+          >
             Create Auction
           </button>
         </div>

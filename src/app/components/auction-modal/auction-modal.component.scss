@@ -1,8 +1,7 @@
 .card--artwork__header {
   height: 164px;
   border-radius: 16px;
-  box-shadow: 0px 4px 12px rgb(0 0 0 / 12%);
-}
-.card-color--type--symbol {
-  height: inherit;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 200px;
 }

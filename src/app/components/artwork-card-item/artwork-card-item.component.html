@@ -17,7 +17,13 @@
             <fa-icon class="ml-1" [icon]="['far', 'window-restore']"></fa-icon>
           </ng-container>
           <ng-container *ngIf="color.type === 'film'">
-            Watch Trailer
+            Watch
+            <ng-container
+              *ngIf="state === 'own'; then Main; else Trailer"
+            ></ng-container>
+            <ng-template #Main> Video </ng-template>
+            <ng-template #Trailer> Trailer </ng-template>
+
             <fa-icon class="ml-1" [icon]="['fas', 'play']"></fa-icon>
           </ng-container>
         </span>
@@ -95,7 +101,7 @@
             <p class="text-muted font-weight-light">Time Left</p>
           </div>
         </div>
-        <!--
+        <!--  -->
         <div class="row py-2">
           <div class="col">
             <p class="m-0 font-weight-light">
@@ -119,13 +125,33 @@
           </div>
           <div
             class="col text-right"
-            *ngIf="color.auction?.numberOfBids !== undefined"
+            *ngIf="
+              color.auction?.numberOfBids !== undefined;
+              else loadingNumberOfBids
+            "
           >
             <p class="m-0">{{ color.auction?.numberOfBids }}</p>
-            <p class="text-muted font-weight-light">Bids</p>
+            <p
+              class="text-muted font-weight-light"
+              *ngIf="color.auction?.numberOfBids != 1; else singleBid"
+            >
+              Bids
+            </p>
+            <ng-template #singleBid>
+              <p class="text-muted font-weight-light">Bid</p>
+            </ng-template>
           </div>
+          <ng-template #loadingNumberOfBids>
+            <div class="col text-right">
+              <span
+                class="spinner-border spinner-border-sm mr-1"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </div>
+          </ng-template>
         </div>
-        -->
+        <!--  -->
         <div class="row" *ngIf="isModal">
           <div class="col">
             <p class="m-0">
@@ -360,7 +386,7 @@
               <button
                 (click)="openAuctionModal()"
                 type="button"
-                class="btn btn-light"
+                class="btn btn-success"
               >
                 Create Auction
               </button>

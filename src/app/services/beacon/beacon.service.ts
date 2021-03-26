@@ -124,13 +124,13 @@ export class BeaconService {
   ): Promise<TransactionWalletOperation> {
     this.storeService.setColorLoadingState(tokenId, true)
     this.storeService.setFavorite(tokenId, true)
-
+    //TODO: log times to investigate delay
     const contractInstance = await tezos.wallet.at(
       environment.acuteartAuctionContract
     )
     console.log(contractInstance)
     const result = await contractInstance.methods.withdraw(auctionId).send()
-    console.log(result)
+    console.log('result beaconservice claim', result)
     return result
   }
 
@@ -201,7 +201,6 @@ export class BeaconService {
     )
 
     const contractInstance = await tezos.wallet.at(environment.acuteartContract)
-
     const updateOperatorsResult = await contractInstance.methods
       .update_operators([
         {
@@ -213,24 +212,22 @@ export class BeaconService {
         },
       ])
       .toTransferParams()
-
     const auctionContract = await tezos.wallet.at(
       environment.acuteartAuctionContract
     )
 
-    const randomNumber = await getRandomNumber(10)
+    const randomNumber = Number(await getRandomNumber(10))
 
     const createAuctionResult = await auctionContract.methods
       .create_auction(
         randomNumber, // auction_id
-        amount.toString(), // bid_amount
-        endDate,
         environment.acuteartContract, // token_address
+        tokenId, // token_id
         1, // token_amount (always 1)
-        tokenId // token_id
+        endDate, // end_timestamp
+        amount.toString() // bid_amount
       )
       .toTransferParams()
-
     const res = await this.wallet.client.requestOperation({
       operationDetails: [
         {
