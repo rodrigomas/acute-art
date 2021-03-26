@@ -18,6 +18,7 @@ import {
   tap,
 } from 'rxjs/operators'
 import { AccountInfo } from '@airgap/beacon-sdk'
+import { ApiService } from '../api/api.service'
 var deepEqual = require('fast-deep-equal/es6')
 
 const colorsFromStorage: Color[] = require('../../../assets/artworks.json')
@@ -92,6 +93,7 @@ export interface AuctionItem {
   seller: string
   bidAmount: string
   bidder: string
+  numberOfBids?: number | undefined
 }
 
 export interface PreviousAuctionItem {
@@ -103,6 +105,7 @@ export interface PreviousAuctionItem {
   seller: string
   bidAmount: string
   bidder: string
+  hashId: string
 }
 
 export type ViewTypes = 'explore' | 'auctions' | 'my-colors' | 'watchlist'
@@ -184,6 +187,9 @@ export class StoreService {
   private _previousAuctionInfo: BehaviorSubject<
     Map<number, PreviousAuctionItem>
   > = new BehaviorSubject(new Map())
+  private _auctionBids: BehaviorSubject<
+    Map<number, number>
+  > = new BehaviorSubject(new Map())
   private _colorStates: BehaviorSubject<
     Map<number, boolean>
   > = new BehaviorSubject(new Map())
@@ -198,7 +204,8 @@ export class StoreService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly store$: Store<State>
+    private readonly store$: Store<State>,
+    private readonly api: ApiService
   ) {
     this.store$
       .select(
@@ -267,6 +274,10 @@ export class StoreService {
         distinctUntilChanged(),
         tap((x) => console.log('_sortDirection changed', x))
       ),
+      this._auctionBids.pipe(
+        // distinctUntilChanged(),
+        tap((x) => console.log('auctionBids changed', x))
+      ),
     ]).pipe(
       map((x) => x as any), // TODO: Fix typing?
       tap(() => {
@@ -287,6 +298,7 @@ export class StoreService {
           searchTerm,
           sortType,
           sortDirection,
+          auctionBids,
         ]: [
           Color[],
           ArtworkType,
@@ -299,19 +311,28 @@ export class StoreService {
           AccountInfo | undefined,
           string,
           SortTypes,
-          SortDirection
+          SortDirection,
+          Map<number, number>
         ]) =>
           colors
-            .map((c) => ({
-              ...c,
-              auction: auctionInfo.get(c.token_id),
-              owner: ownerInfo.get(c.token_id),
-              loading: colorStates.get(c.token_id) ?? false,
-              isFavorite: favorites.includes(c.token_id), // TODO: use map
-              previousAuction: previousAuctionInfo.get(c.token_id),
-            }))
-            .filter((c) =>
-              view === 'explore'
+            .map((c) => {
+              const auction = auctionInfo.get(c.token_id)
+              const auctionBidSize = auctionBids.size // If size > 0, we know that we have the API response and can assume all non existent ones are 0
+              if (auctionBidSize > 0 && auction) {
+                auction.numberOfBids = auctionBids.get(auction.auctionId) ?? 0
+              }
+              const result = {
+                ...c,
+                auction: auctionInfo.get(c.token_id),
+                owner: ownerInfo.get(c.token_id),
+                loading: colorStates.get(c.token_id) ?? false,
+                isFavorite: favorites.includes(c.token_id), // TODO: use map
+                previousAuction: previousAuctionInfo.get(c.token_id),
+              }
+              return result
+            })
+            .filter((c) => {
+              return view === 'explore'
                 ? true
                 : view === 'watchlist'
                 ? c.isFavorite
@@ -322,7 +343,7 @@ export class StoreService {
                   isClaimable(c, accountInfo) ||
                   isSeller(c, accountInfo)
                 : true
-            )
+            })
             .filter((c) => type === 'all' || c.type === type)
             .filter(
               (c) =>
@@ -416,6 +437,7 @@ export class StoreService {
     this.getColorOwners()
     this.getAuctions()
     this.getPreviousAuctions()
+    this.getAuctionBids()
     this.updateState()
   }
 
@@ -484,8 +506,8 @@ export class StoreService {
       .filter((d) => d.data.value !== null)
       .forEach((d) => {
         ownerInfo.set(
-          Number(d.data.key.children[0].value),
-          d.data.key.children[1].value
+          Number(d.data.key.children[1].value),
+          d.data.key.children[0].value
         )
       })
 
@@ -502,12 +524,10 @@ export class StoreService {
     const data = await this.http
       .get<RootObject[]>(`${environment.auctionBigmapUrl}`)
       .toPromise()
-
-    const auctionInfo = new Map<number, AuctionItem>()
+    const auctionInfo = new Map(this._auctionInfo.value)
 
     data.forEach((d) => {
       const value = d.data.value
-
       if (!value) {
         return
       }
@@ -546,11 +566,19 @@ export class StoreService {
     // }
 
     if (!deepEqual(this._auctionInfo.value, auctionInfo)) {
-      console.log('Auctions: Not equal, updating')
+      console.log(
+        'Auctions: Not equal, updating',
+        this._auctionInfo.value.size,
+        auctionInfo.size
+      )
       this._auctionInfo.next(auctionInfo)
       this._colorStates.next(new Map())
     } else {
-      console.log('Auctions: responses are equal')
+      console.log(
+        'Auctions: responses are equal',
+        this._auctionInfo.value.size,
+        auctionInfo.size
+      )
     }
   }
 
@@ -561,13 +589,12 @@ export class StoreService {
         `${environment.indexerUrl}auction/operations?status=applied&entrypoint=withdraw`
       )
       .toPromise()
-
     const previousAuctionInfo = new Map<number, PreviousAuctionItem>()
 
     data
       .filter((o: any) => o.entrypoint === 'withdraw')
       .forEach((o: any) => {
-        const value = o.storage_diff?.children[0]?.children
+        const value = o.storage_diff?.children[1]?.children[0]?.children
 
         if (!value) {
           return
@@ -579,9 +606,10 @@ export class StoreService {
         const seller = value[4].value
         const bidAmount = value[5].value
         const bidder = value[6].value
+        const hashId = o.hash
 
         const auctionItem = {
-          auctionId: Number(o.parameters.value),
+          auctionId: Number(o.parameters[0].value),
           tokenAddress,
           tokenId,
           tokenAmount,
@@ -589,8 +617,8 @@ export class StoreService {
           seller,
           bidAmount,
           bidder,
+          hashId,
         }
-
         if (auctionItem.bidder !== auctionItem.seller) {
           // This check is here because otherwise the owner can "fake" the previous auction price
           previousAuctionInfo.set(tokenId, auctionItem)
@@ -610,11 +638,63 @@ export class StoreService {
     // }
 
     if (!deepEqual(this._previousAuctionInfo.value, previousAuctionInfo)) {
-      console.log('Previous Auctions: Not equal, updating')
+      console.log(
+        'Previous Auctions: Not equal, updating',
+        this._previousAuctionInfo.value.size,
+        previousAuctionInfo.size
+      )
       this._previousAuctionInfo.next(previousAuctionInfo)
       this._colorStates.next(new Map())
     } else {
-      console.log('Previous Auctions: responses are equal')
+      console.log(
+        'Previous Auctions: responses are equal',
+        this._previousAuctionInfo.value.size,
+        previousAuctionInfo.size
+      )
+    }
+  }
+
+  async getAuctionBids() {
+    // TODO: Add response type
+    const data = await this.api.getAllBidsForAllAuctions()
+    const auctionBids = new Map<number, number>()
+
+    Object.entries(data).forEach((o) => {
+      const auctionInfo = this._auctionInfo.value
+      if (auctionInfo) {
+        const auction = auctionInfo.get(Number(o[0]))
+        if (auction) {
+          auction.numberOfBids = o[1]
+        }
+      }
+      auctionBids.set(Number(o[0]), o[1])
+    })
+
+    // TODO: This will only update the "loading" state if the color was actually affected by the update
+    // const currentAuction = this._auctionInfo.value
+    // for (const key of currentAuction.keys()) {
+    //   console.log('KEY,', key)
+    //   if (deepEqual(currentAuction.get(key), auctionInfo.get(key))) {
+    //     continue
+    //   } else {
+    //     console.log(`TOKEN "${key}" WAS UPDATED`)
+    //     this.setColorLoadingState(key, false)
+    //   }
+    // }
+
+    if (!deepEqual(this._auctionBids.value, auctionBids)) {
+      console.log(
+        'Auction Bids: Not equal, updating',
+        this._auctionBids.value.size,
+        auctionBids.size
+      )
+      this._auctionBids.next(auctionBids)
+    } else {
+      console.log(
+        'Auction Bids: responses are equal',
+        this._auctionBids.value.size,
+        auctionBids.size
+      )
     }
   }
 
@@ -624,6 +704,7 @@ export class StoreService {
       this.getColorOwners()
       this.getAuctions()
       this.getPreviousAuctions()
+      this.getAuctionBids()
     })
   }
 
